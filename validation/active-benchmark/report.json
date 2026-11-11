@@ -1,0 +1,1412 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-11-11T12:37:14.714806+00:00",
+  "pages": [],
+  "findings": [
+    {
+      "rule": "active.sqli-union",
+      "title": "Подтверждено вычисление двух SQL-canary через UNION SELECT",
+      "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+      "severity": "high",
+      "confidence": "verified-sql-canary",
+      "evidence": {
+        "parameter": "id",
+        "columns": 1,
+        "dialect": "pipes",
+        "canaries": [
+          {
+            "marker": "audit1942fbc156f744b33b982439",
+            "suffix": " UNION SELECT 'audit1942fbc15'||'6f744b33b982439' -- ",
+            "body_sha256": "95329dac2005e891a946de0507a78137538bd344859c9c6db553d82246189d5d"
+          },
+          {
+            "marker": "audit5d090b3e88df0a49e5a479e0",
+            "suffix": " UNION SELECT 'audit5d090b3e8'||'8df0a49e5a479e0' -- ",
+            "body_sha256": "94c4693d5e6494a87bdb4af85f1c2943f02e9c32ea1e9efefdf33d9c715eba9b"
+          }
+        ],
+        "interpretation": "В ответах появились два собранных маркера, отсутствовавших целиком во входе. SELECT содержит только константы и NULL; сохранённые значения БД не запрашивались."
+      },
+      "recommendation": "Замените конкатенацию SQL параметризованными запросами; проверьте права учётной записи БД."
+    },
+    {
+      "rule": "active.sqli-union",
+      "title": "Подтверждено вычисление двух SQL-canary через UNION SELECT",
+      "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+      "severity": "high",
+      "confidence": "verified-sql-canary",
+      "evidence": {
+        "parameter": "id",
+        "columns": 1,
+        "dialect": "pipes",
+        "canaries": [
+          {
+            "marker": "auditc585cb5608b771d702912b44",
+            "suffix": "' UNION SELECT 'auditc585cb560'||'8b771d702912b44' -- ",
+            "body_sha256": "b22358cb1c62d332d0d5752da385a86215855e3174ee3f3073d20441d476b53c"
+          },
+          {
+            "marker": "audit9026435d193c4ff2836f28cd",
+            "suffix": "' UNION SELECT 'audit9026435d1'||'93c4ff2836f28cd' -- ",
+            "body_sha256": "d6ee10d226d28491b53d02441652cd017ce85c221c351c848eccae3b9d09fc6f"
+          }
+        ],
+        "interpretation": "В ответах появились два собранных маркера, отсутствовавших целиком во входе. SELECT содержит только константы и NULL; сохранённые значения БД не запрашивались."
+      },
+      "recommendation": "Замените конкатенацию SQL параметризованными запросами; проверьте права учётной записи БД."
+    },
+    {
+      "rule": "active.sqli-union",
+      "title": "Подтверждено вычисление двух SQL-canary через UNION SELECT",
+      "url": "http://127.0.0.1:37377/sql/two?REDACTED",
+      "severity": "high",
+      "confidence": "verified-sql-canary",
+      "evidence": {
+        "parameter": "id",
+        "columns": 2,
+        "dialect": "pipes",
+        "canaries": [
+          {
+            "marker": "audit1fc9a0d12fb9da2eecfb364d",
+            "suffix": " UNION SELECT 'audit1fc9a0d12'||'fb9da2eecfb364d',NULL -- ",
+            "body_sha256": "aef74457e6ecad1f332ab6be4bc37c800454a3b10915ad567c287e675daf33c9"
+          },
+          {
+            "marker": "auditfc2b7f095707e39740233b5a",
+            "suffix": " UNION SELECT 'auditfc2b7f095'||'707e39740233b5a',NULL -- ",
+            "body_sha256": "6a4744d96cbb7a414dadbe0482151f791add639b6c15bdb58fce62e7cc2b8fab"
+          }
+        ],
+        "interpretation": "В ответах появились два собранных маркера, отсутствовавших целиком во входе. SELECT содержит только константы и NULL; сохранённые значения БД не запрашивались."
+      },
+      "recommendation": "Замените конкатенацию SQL параметризованными запросами; проверьте права учётной записи БД."
+    },
+    {
+      "rule": "active.sqli-union",
+      "title": "Подтверждено вычисление двух SQL-canary через UNION SELECT",
+      "url": "http://127.0.0.1:37377/sql/three?REDACTED",
+      "severity": "high",
+      "confidence": "verified-sql-canary",
+      "evidence": {
+        "parameter": "id",
+        "columns": 3,
+        "dialect": "pipes",
+        "canaries": [
+          {
+            "marker": "audit4c656170c35cb637571710c2",
+            "suffix": " UNION SELECT 'audit4c656170c'||'35cb637571710c2',NULL,NULL -- ",
+            "body_sha256": "7f059da56479a8661afada4a76a139725b298964acf6175152cb7fb83d39c964"
+          },
+          {
+            "marker": "audit8751b1c4464635c0bd1d43eb",
+            "suffix": " UNION SELECT 'audit8751b1c44'||'64635c0bd1d43eb',NULL,NULL -- ",
+            "body_sha256": "255075a66fd68e453720f255bfd93d7321e7d76be11b4b1cc532008c3d4f8e2d"
+          }
+        ],
+        "interpretation": "В ответах появились два собранных маркера, отсутствовавших целиком во входе. SELECT содержит только константы и NULL; сохранённые значения БД не запрашивались."
+      },
+      "recommendation": "Замените конкатенацию SQL параметризованными запросами; проверьте права учётной записи БД."
+    },
+    {
+      "rule": "active.sqli-boolean",
+      "title": "Признаки SQL-инъекции: повторяемая зависимость от логического условия",
+      "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+      "severity": "high",
+      "confidence": "strong-differential-evidence",
+      "evidence": {
+        "parameter": "id",
+        "predicates": [
+          {
+            "true_suffix": " AND 598925=598925",
+            "false_suffix": " AND 598925=598926"
+          },
+          {
+            "true_suffix": " AND 884138=884138",
+            "false_suffix": " AND 884138=884139"
+          }
+        ],
+        "baseline_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+        "true_sha256": [
+          "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238"
+        ],
+        "false_sha256": [
+          "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        ],
+        "interpretation": "Два разных истинных условия сохраняют baseline; ложные дают другой стабильный ответ. Исполнение SQL сервером не наблюдалось напрямую."
+      },
+      "recommendation": "Используйте параметризованные запросы; подтвердите источник различий по серверным логам и коду."
+    },
+    {
+      "rule": "active.sqli-boolean",
+      "title": "Признаки SQL-инъекции: повторяемая зависимость от логического условия",
+      "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+      "severity": "high",
+      "confidence": "strong-differential-evidence",
+      "evidence": {
+        "parameter": "id",
+        "predicates": [
+          {
+            "true_suffix": "' AND '310979'='310979",
+            "false_suffix": "' AND '310979'='310980"
+          },
+          {
+            "true_suffix": "' AND '748470'='748470",
+            "false_suffix": "' AND '748470'='748471"
+          }
+        ],
+        "baseline_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+        "true_sha256": [
+          "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238"
+        ],
+        "false_sha256": [
+          "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        ],
+        "interpretation": "Два разных истинных условия сохраняют baseline; ложные дают другой стабильный ответ. Исполнение SQL сервером не наблюдалось напрямую."
+      },
+      "recommendation": "Используйте параметризованные запросы; подтвердите источник различий по серверным логам и коду."
+    },
+    {
+      "rule": "active.html-injection",
+      "title": "Подтверждено внедрение HTML-разметки через query-параметр",
+      "url": "http://127.0.0.1:37377/html/raw?REDACTED",
+      "severity": "medium",
+      "confidence": "verified-html-structure",
+      "evidence": {
+        "parameter": "q",
+        "markers": [
+          {
+            "marker": "auditda5bf6ed7571f58f3cb6",
+            "element_found": true,
+            "body_sha256": "c1cef89d743bedec995093b3bdb2eb22caaab14a78a58d65c989c4a48596bc52"
+          },
+          {
+            "marker": "audit035a0588a1151a65d055",
+            "element_found": true,
+            "body_sha256": "97254831c76a6a6280fc39926329e74821f5a4387f8d7338833f3c3a0efbac7f"
+          }
+        ],
+        "element": "span[data-audit-probe]",
+        "interpretation": "Маркер распознан как HTML-элемент вне инертных контекстов. JavaScript не исполнялся; это не подтверждение XSS."
+      },
+      "recommendation": "Экранируйте вывод по HTML-контексту и используйте безопасные шаблоны."
+    },
+    {
+      "rule": "active.cors",
+      "title": "CORS отражает произвольный Origin и разрешает credentials",
+      "url": "http://127.0.0.1:37377/cors/open",
+      "severity": "medium",
+      "confidence": "verified-header-policy",
+      "evidence": {
+        "observations": [
+          {
+            "origin": "https://audit-6860d69065b5331e071b.invalid",
+            "allow_origin": [
+              "https://audit-6860d69065b5331e071b.invalid"
+            ],
+            "allow_credentials": [
+              "true"
+            ],
+            "policy_allows_credentials": true
+          },
+          {
+            "origin": "https://audit-d0302b70a22faf828552.invalid",
+            "allow_origin": [
+              "https://audit-d0302b70a22faf828552.invalid"
+            ],
+            "allow_credentials": [
+              "true"
+            ],
+            "policy_allows_credentials": true
+          }
+        ],
+        "interpretation": "Подтверждено поведение CORS-заголовков. Доступ браузера к приватным данным не проверен; учитывайте SameSite и назначение API."
+      },
+      "recommendation": "Сопоставляйте Origin с точным списком доверенных источников; credentials разрешайте только при необходимости."
+    }
+  ],
+  "errors": [
+    {
+      "check_index": 20,
+      "type": "inconclusive",
+      "url": "http://127.0.0.1:37377/sql/dynamic?REDACTED",
+      "message": "Baseline нестабилен; сравнение не даёт достоверного вывода"
+    },
+    {
+      "check_index": 21,
+      "type": "inconclusive",
+      "url": "http://127.0.0.1:37377/sql/waf?REDACTED",
+      "message": "Изменение HTTP-статуса, усечение или кодирование ответа не считается SQLi"
+    },
+    {
+      "check_index": 22,
+      "type": "inconclusive",
+      "url": "http://127.0.0.1:37377/html/json?REDACTED",
+      "message": "Нужен полный успешный ответ text/html"
+    },
+    {
+      "check_index": 23,
+      "type": "inconclusive",
+      "url": "http://127.0.0.1:37377/truncated",
+      "message": "Baseline не является полным успешным ответом"
+    },
+    {
+      "check_index": 24,
+      "type": "inconclusive",
+      "url": "http://127.0.0.1:37377/redirect",
+      "message": "Baseline не является полным успешным ответом"
+    }
+  ],
+  "imports": [],
+  "evidence": [],
+  "mode": "active-verification",
+  "requests": 97,
+  "active_results": [
+    {
+      "index": 0,
+      "type": "sqli-union",
+      "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+      "parameter": "id",
+      "status": "finding",
+      "reason": "Воспроизведено вычисление двух констант через SQL-инъекцию",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:pipes",
+          "status": 200,
+          "body_bytes": 46,
+          "body_sha256": "95329dac2005e891a946de0507a78137538bd344859c9c6db553d82246189d5d",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:pipes",
+          "status": 200,
+          "body_bytes": 46,
+          "body_sha256": "94c4693d5e6494a87bdb4af85f1c2943f02e9c32ea1e9efefdf33d9c715eba9b",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "type": "sqli-union",
+      "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+      "parameter": "id",
+      "status": "finding",
+      "reason": "Воспроизведено вычисление двух констант через SQL-инъекцию",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:pipes",
+          "status": 200,
+          "body_bytes": 46,
+          "body_sha256": "b22358cb1c62d332d0d5752da385a86215855e3174ee3f3073d20441d476b53c",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:pipes",
+          "status": 200,
+          "body_bytes": 46,
+          "body_sha256": "d6ee10d226d28491b53d02441652cd017ce85c221c351c848eccae3b9d09fc6f",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "type": "sqli-union",
+      "url": "http://127.0.0.1:37377/sql/two?REDACTED",
+      "parameter": "id",
+      "status": "finding",
+      "reason": "Воспроизведено вычисление двух констант через SQL-инъекцию",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/two?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 14,
+          "body_sha256": "80ae422ad6f427f9ff5d518662de74d119b9f889d72c9890b48e4b015023adc0",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/two?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:pipes",
+          "status": 500,
+          "body_bytes": 11,
+          "body_sha256": "f5d1fa9e9048a0054351b88064a3ed73f849e270a988a960df96c410a5e10e36",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/two?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:concat",
+          "status": 500,
+          "body_bytes": 11,
+          "body_sha256": "f5d1fa9e9048a0054351b88064a3ed73f849e270a988a960df96c410a5e10e36",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/two?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:2:pipes",
+          "status": 200,
+          "body_bytes": 55,
+          "body_sha256": "aef74457e6ecad1f332ab6be4bc37c800454a3b10915ad567c287e675daf33c9",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/two?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:2:pipes",
+          "status": 200,
+          "body_bytes": 55,
+          "body_sha256": "6a4744d96cbb7a414dadbe0482151f791add639b6c15bdb58fce62e7cc2b8fab",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "type": "sqli-union",
+      "url": "http://127.0.0.1:37377/sql/three?REDACTED",
+      "parameter": "id",
+      "status": "finding",
+      "reason": "Воспроизведено вычисление двух констант через SQL-инъекцию",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/three?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 18,
+          "body_sha256": "05595f370a86c2c483ce79a4e9a974265b1b023571c26be4279fe575b4c3d98d",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/three?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:pipes",
+          "status": 500,
+          "body_bytes": 11,
+          "body_sha256": "f5d1fa9e9048a0054351b88064a3ed73f849e270a988a960df96c410a5e10e36",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/three?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:concat",
+          "status": 500,
+          "body_bytes": 11,
+          "body_sha256": "f5d1fa9e9048a0054351b88064a3ed73f849e270a988a960df96c410a5e10e36",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/three?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:2:pipes",
+          "status": 500,
+          "body_bytes": 11,
+          "body_sha256": "f5d1fa9e9048a0054351b88064a3ed73f849e270a988a960df96c410a5e10e36",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/three?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:2:concat",
+          "status": 500,
+          "body_bytes": 11,
+          "body_sha256": "f5d1fa9e9048a0054351b88064a3ed73f849e270a988a960df96c410a5e10e36",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/three?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:3:pipes",
+          "status": 200,
+          "body_bytes": 65,
+          "body_sha256": "7f059da56479a8661afada4a76a139725b298964acf6175152cb7fb83d39c964",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/three?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:3:pipes",
+          "status": 200,
+          "body_bytes": 65,
+          "body_sha256": "255075a66fd68e453720f255bfd93d7321e7d76be11b4b1cc532008c3d4f8e2d",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "type": "sqli-union",
+      "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+      "parameter": "id",
+      "status": "not-detected",
+      "reason": "SQL-canary не найден: проверены 1–3 столбца, первый столбец с маркером, два синтаксиса конкатенации",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:pipes",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:concat",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:2:pipes",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:2:concat",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:3:pipes",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:3:concat",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "type": "sqli-union",
+      "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+      "parameter": "id",
+      "status": "not-detected",
+      "reason": "SQL-canary не найден: проверены 1–3 столбца, первый столбец с маркером, два синтаксиса конкатенации",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 16,
+          "body_sha256": "d1319117c77c02bc8900011eca0269f6abeecd836af83c988b55855290ba82a6",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:pipes",
+          "status": 200,
+          "body_bytes": 89,
+          "body_sha256": "643641126ae638f940edea8020a35480bafea0be0caa1d6a863f661abcc20b14",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:1:concat",
+          "status": 200,
+          "body_bytes": 96,
+          "body_sha256": "ff4c437c72e4f44c3414f3cf7c801b63f09413db5e7b72cf7bc02946a75bd256",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:2:pipes",
+          "status": 200,
+          "body_bytes": 94,
+          "body_sha256": "c5dc21af8a15e9aee190f30210e500fa73708dd9d2bfbba102f709a16a04c2c7",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:2:concat",
+          "status": 200,
+          "body_bytes": 101,
+          "body_sha256": "14207aab5ec8affc02bbf2aed4c8e26ae16fb6d0461a4c4b369e9c8cc7dfed45",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:3:pipes",
+          "status": 200,
+          "body_bytes": 99,
+          "body_sha256": "200fcd4d2e12f1c50b3596474aab0ca6a556d488219455893183da7107a91134",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-union:3:concat",
+          "status": 200,
+          "body_bytes": 106,
+          "body_sha256": "e346452428129be018130eaa427454747ff868323fd97e1fba7044ca10a3b7d5",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "type": "sqli-boolean",
+      "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+      "parameter": "id",
+      "status": "finding",
+      "reason": "Повторяемое true/false-различие; данные БД не извлекались",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+          "method": "GET",
+          "probe": "baseline-repeat",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/numeric?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "type": "sqli-boolean",
+      "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+      "parameter": "id",
+      "status": "finding",
+      "reason": "Повторяемое true/false-различие; данные БД не извлекались",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+          "method": "GET",
+          "probe": "baseline-repeat",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/string?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "type": "html-injection",
+      "url": "http://127.0.0.1:37377/html/raw?REDACTED",
+      "parameter": "q",
+      "status": "finding",
+      "reason": "Два независимых маркера стали HTML-элементами",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/html/raw?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 18,
+          "body_sha256": "be2e79c8ea47332b018698ccd57cd32e89485bc17c5905dfd2638d70e16c36e5",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/raw?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:auditda5bf6ed7571f58f3cb6",
+          "status": 200,
+          "body_bytes": 96,
+          "body_sha256": "c1cef89d743bedec995093b3bdb2eb22caaab14a78a58d65c989c4a48596bc52",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/raw?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:audit035a0588a1151a65d055",
+          "status": 200,
+          "body_bytes": 96,
+          "body_sha256": "97254831c76a6a6280fc39926329e74821f5a4387f8d7338833f3c3a0efbac7f",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "type": "cors",
+      "url": "http://127.0.0.1:37377/cors/open",
+      "status": "finding",
+      "reason": "Два случайных Origin приняты с credentials",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/cors/open",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/open",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-6860d69065b5331e071b.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/open",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-d0302b70a22faf828552.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "type": "sqli-boolean",
+      "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+      "parameter": "id",
+      "status": "not-detected",
+      "reason": "Строгая схема baseline=true и false≠baseline не воспроизвелась",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "baseline-repeat",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/protected?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 200,
+          "body_bytes": 2,
+          "body_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "type": "sqli-boolean",
+      "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+      "parameter": "id",
+      "status": "not-detected",
+      "reason": "Строгая схема baseline=true и false≠baseline не воспроизвелась",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 16,
+          "body_sha256": "d1319117c77c02bc8900011eca0269f6abeecd836af83c988b55855290ba82a6",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "baseline-repeat",
+          "status": 200,
+          "body_bytes": 16,
+          "body_sha256": "d1319117c77c02bc8900011eca0269f6abeecd836af83c988b55855290ba82a6",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 200,
+          "body_bytes": 34,
+          "body_sha256": "8a2375eb4bcd2dea6e3c7a4c86f2ee8d5053266f8d342533bfb687dc397bceb4",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 200,
+          "body_bytes": 34,
+          "body_sha256": "453cc212ef4385c6db42e42f1107593d43898876b6da3895fc58ec9ae58efe9f",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 200,
+          "body_bytes": 34,
+          "body_sha256": "00421dfcc4d2037c2be46b458166c9e30ada65ee142ce2a6d0a5fb386dd8534d",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/echo?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 200,
+          "body_bytes": 34,
+          "body_sha256": "abfb6b27f1b537f3e18898225011f9e0a2ca029661dfa01ad2b54cdaa52c7fe9",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "type": "html-injection",
+      "url": "http://127.0.0.1:37377/html/escaped?REDACTED",
+      "parameter": "q",
+      "status": "not-detected",
+      "reason": "Маркеры не стали HTML-элементами вне инертного контекста",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/html/escaped?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 18,
+          "body_sha256": "be2e79c8ea47332b018698ccd57cd32e89485bc17c5905dfd2638d70e16c36e5",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/escaped?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:auditb5e0f0ab86d1622379ce",
+          "status": 200,
+          "body_bytes": 118,
+          "body_sha256": "ceb8b6a154f31030521bf3a5b9200556c2e5d35c13f2cad1a4a7a8438fa193bc",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/escaped?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:audit1567f2210c3033058d13",
+          "status": 200,
+          "body_bytes": 118,
+          "body_sha256": "ac3f9063cd68c8b57aa9b90c67e2316bff9feec21cc280cfdbc3a4e0f9c3b75c",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "type": "html-injection",
+      "url": "http://127.0.0.1:37377/html/attribute?REDACTED",
+      "parameter": "q",
+      "status": "not-detected",
+      "reason": "Маркеры не стали HTML-элементами вне инертного контекста",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/html/attribute?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 21,
+          "body_sha256": "92cef2a9ab4b49451ced3ba021b18aaa7a9433b3571d821fe2d49eab1e0aa5b9",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/attribute?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:audit4ac49f58bb3fb2d79b8f",
+          "status": 200,
+          "body_bytes": 121,
+          "body_sha256": "92b006d0f09d3a543428a16355872c88883603ea35082e204106aeb8fa9df1bf",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/attribute?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:audit8c6d2044f0fa945d87a0",
+          "status": 200,
+          "body_bytes": 121,
+          "body_sha256": "567f4e13188839c6e9610ed110d140d565fcb113f8e3e2b933a7c2d5e191fb22",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "type": "html-injection",
+      "url": "http://127.0.0.1:37377/html/textarea?REDACTED",
+      "parameter": "q",
+      "status": "not-detected",
+      "reason": "Маркеры не стали HTML-элементами вне инертного контекста",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/html/textarea?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 26,
+          "body_sha256": "132516e74c8aad83df50cdbf355b81ece6efd3e7818a8a340be67ded4b5024b6",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/textarea?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:audit3c24f38618e98ce399cb",
+          "status": 200,
+          "body_bytes": 104,
+          "body_sha256": "2c3ce2d541501c7ce4cc86b21024adbf054bce5f7f9009a596f37ba249eeb2a7",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/textarea?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:auditb164c1c0d391630b2ade",
+          "status": 200,
+          "body_bytes": 104,
+          "body_sha256": "de047264e861cfdd2cc87562bb10231c600e4f02c732f0ec1a88102c0c7e9960",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "type": "html-injection",
+      "url": "http://127.0.0.1:37377/html/script?REDACTED",
+      "parameter": "q",
+      "status": "not-detected",
+      "reason": "Маркеры не стали HTML-элементами вне инертного контекста",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/html/script?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 34,
+          "body_sha256": "94197b32a21f208f6c474db4cab8c1dd0760cd330d903b95aefbbf2235fb5bdf",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/script?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:auditbff02a40e4c53ad2b866",
+          "status": 200,
+          "body_bytes": 114,
+          "body_sha256": "d0cbc014fd3f5ff3c640127fcde717abc7c471a5d940036b5636e470984eb61b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/html/script?REDACTED",
+          "method": "GET",
+          "probe": "html-marker:audit8f51621a9be9c5424833",
+          "status": 200,
+          "body_bytes": 114,
+          "body_sha256": "79156f9512bf1b2230cb2b02e525861b2911f2269719a276ea2d4304e018285d",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "type": "cors",
+      "url": "http://127.0.0.1:37377/cors/strict",
+      "status": "not-detected",
+      "reason": "Произвольные Origin не приняты одновременно с credentials",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/cors/strict",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/strict",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-254349162c7e7acc45ea.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/strict",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-20207748773e6bff23ef.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "type": "cors",
+      "url": "http://127.0.0.1:37377/cors/wildcard",
+      "status": "not-detected",
+      "reason": "Произвольные Origin не приняты одновременно с credentials",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/cors/wildcard",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/wildcard",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-832dd48cd7538e1d2e12.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/wildcard",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-37f891c8801066c649ed.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "type": "cors",
+      "url": "http://127.0.0.1:37377/cors/duplicate",
+      "status": "not-detected",
+      "reason": "Произвольные Origin не приняты одновременно с credentials",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/cors/duplicate",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/duplicate",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-c188d9a944495084746e.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/duplicate",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-98e13a99a5b62fd2b9af.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "type": "cors",
+      "url": "http://127.0.0.1:37377/cors/nocredentials",
+      "status": "not-detected",
+      "reason": "Произвольные Origin не приняты одновременно с credentials",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/cors/nocredentials",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/nocredentials",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-ac9bd83075548210787d.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/cors/nocredentials",
+          "method": "GET",
+          "probe": "cors-origin:https://audit-e0269873541ae9621b45.invalid",
+          "status": 200,
+          "body_bytes": 23,
+          "body_sha256": "986f6d48d574a9f0b911aff698e5dac679c5643f70fdddcd63afacddad6d1b5b",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "type": "sqli-boolean",
+      "url": "http://127.0.0.1:37377/sql/dynamic?REDACTED",
+      "parameter": "id",
+      "status": "inconclusive",
+      "reason": "Baseline нестабилен; сравнение не даёт достоверного вывода",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/dynamic?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 13,
+          "body_sha256": "70456de03d20fad9dc2144d62192f8835ed85510b166e5288ddc55213c8762b8",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/dynamic?REDACTED",
+          "method": "GET",
+          "probe": "baseline-repeat",
+          "status": 200,
+          "body_bytes": 13,
+          "body_sha256": "96ee802fe1886dc962701933868244a872a3c59d5cc75113a707825440b83e2e",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "type": "sqli-boolean",
+      "url": "http://127.0.0.1:37377/sql/waf?REDACTED",
+      "parameter": "id",
+      "status": "inconclusive",
+      "reason": "Изменение HTTP-статуса, усечение или кодирование ответа не считается SQLi",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/sql/waf?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/waf?REDACTED",
+          "method": "GET",
+          "probe": "baseline-repeat",
+          "status": 200,
+          "body_bytes": 11,
+          "body_sha256": "e31a0f054f41c4c888b5dd8460a1df1838c5af426859f441547850879a342238",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/waf?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 403,
+          "body_bytes": 7,
+          "body_sha256": "6973dddd3ef9cb6a2932702f31777faad9c9bf3124d147a84f31aadb6d139546",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/waf?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 403,
+          "body_bytes": 7,
+          "body_sha256": "6973dddd3ef9cb6a2932702f31777faad9c9bf3124d147a84f31aadb6d139546",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/waf?REDACTED",
+          "method": "GET",
+          "probe": "sql-true",
+          "status": 403,
+          "body_bytes": 7,
+          "body_sha256": "6973dddd3ef9cb6a2932702f31777faad9c9bf3124d147a84f31aadb6d139546",
+          "truncated": false
+        },
+        {
+          "url": "http://127.0.0.1:37377/sql/waf?REDACTED",
+          "method": "GET",
+          "probe": "sql-false",
+          "status": 403,
+          "body_bytes": 7,
+          "body_sha256": "6973dddd3ef9cb6a2932702f31777faad9c9bf3124d147a84f31aadb6d139546",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "type": "html-injection",
+      "url": "http://127.0.0.1:37377/html/json?REDACTED",
+      "parameter": "q",
+      "status": "inconclusive",
+      "reason": "Нужен полный успешный ответ text/html",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/html/json?REDACTED",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 18,
+          "body_sha256": "380e78da0f8999fd819c50d329e0c95562a558e80d88c2a2dc02b8af590d3fa2",
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "type": "cors",
+      "url": "http://127.0.0.1:37377/truncated",
+      "status": "inconclusive",
+      "reason": "Baseline не является полным успешным ответом",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/truncated",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 200,
+          "body_bytes": 1024,
+          "body_sha256": "49abd65bbf7f7e40c7055093ed2e3fd75f2f602f2c5fcf955c213e3135eb03f7",
+          "truncated": true
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "type": "cors",
+      "url": "http://127.0.0.1:37377/redirect",
+      "status": "inconclusive",
+      "reason": "Baseline не является полным успешным ответом",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:37377/redirect",
+          "method": "GET",
+          "probe": "baseline",
+          "status": 302,
+          "body_bytes": 8,
+          "body_sha256": "093452239d0e2e43b06b9d5cd8ac735c26449e340e001f87904765bb30e2293e",
+          "truncated": false
+        }
+      ]
+    }
+  ],
+  "scope": {
+    "allowed_origins": [
+      "http://127.0.0.1:37377"
+    ],
+    "exclude_paths": [
+      "/logout",
+      "/signout",
+      "/delete",
+      "/remove"
+    ],
+    "max_requests": 100,
+    "delay": 0.1,
+    "timeout": 10,
+    "max_bytes": 1024
+  },
+  "limitations": [
+    "Только явно заданные URL/параметры и фиксированные GET-пробы; автоматического обнаружения всех точек ввода нет.",
+    "Нет извлечения данных БД, команд ОС, записи файлов, отправки форм и исполнения JavaScript.",
+    "SQLi оценивается по повторяемым ответам; HTML-инъекция и CORS не доказывают XSS или утечку данных."
+  ],
+  "completed_utc": "2026-11-11T12:37:24.328172+00:00",
+  "summary": {
+    "pages": 0,
+    "findings": 8,
+    "errors": 5,
+    "active_checks": 25
+  }
+}

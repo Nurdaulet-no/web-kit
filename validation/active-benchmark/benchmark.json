@@ -1,0 +1,220 @@
+{
+  "generated_utc": "2026-11-11T12:37:24.828613+00:00",
+  "version": "1.1.0",
+  "python": "3.14.4",
+  "environment": "local HTTP server; genuine SQLite queries; synthetic data only",
+  "cases": 25,
+  "passed": 25,
+  "positive_cases": 8,
+  "positive_detections": 8,
+  "negative_cases": 12,
+  "false_positives": 0,
+  "inconclusive_cases": 5,
+  "correct_inconclusive": 5,
+  "requests": 97,
+  "server_requests": 97,
+  "elapsed_seconds": 10.117,
+  "limits": "Small implementation-owned regression matrix, not independent validation or real-world detection rate.",
+  "results": [
+    {
+      "case": "UNION canary: numeric, one column",
+      "type": "sqli-union",
+      "expected": "finding",
+      "actual": "finding",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "UNION canary: string, one column",
+      "type": "sqli-union",
+      "expected": "finding",
+      "actual": "finding",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "UNION canary: two columns",
+      "type": "sqli-union",
+      "expected": "finding",
+      "actual": "finding",
+      "passed": true,
+      "requests": 5
+    },
+    {
+      "case": "UNION canary: three columns",
+      "type": "sqli-union",
+      "expected": "finding",
+      "actual": "finding",
+      "passed": true,
+      "requests": 7
+    },
+    {
+      "case": "UNION: parameterized SQL",
+      "type": "sqli-union",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 7
+    },
+    {
+      "case": "UNION: reflection cannot assemble split canary",
+      "type": "sqli-union",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 7
+    },
+    {
+      "case": "numeric SQLite injection",
+      "type": "sqli-boolean",
+      "expected": "finding",
+      "actual": "finding",
+      "passed": true,
+      "requests": 6
+    },
+    {
+      "case": "string SQLite injection",
+      "type": "sqli-boolean",
+      "expected": "finding",
+      "actual": "finding",
+      "passed": true,
+      "requests": 6
+    },
+    {
+      "case": "unescaped HTML",
+      "type": "html-injection",
+      "expected": "finding",
+      "actual": "finding",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "arbitrary credentialed CORS",
+      "type": "cors",
+      "expected": "finding",
+      "actual": "finding",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "parameterized SQL",
+      "type": "sqli-boolean",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 6
+    },
+    {
+      "case": "input reflection only",
+      "type": "sqli-boolean",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 6
+    },
+    {
+      "case": "HTML escaping",
+      "type": "html-injection",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "escaped attribute",
+      "type": "html-injection",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "inert textarea context",
+      "type": "html-injection",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "marker string in script",
+      "type": "html-injection",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "exact origin allowlist",
+      "type": "cors",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "wildcard is not credentialed CORS",
+      "type": "cors",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "duplicate invalid ACAO",
+      "type": "cors",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "no credentials permission",
+      "type": "cors",
+      "expected": "not-detected",
+      "actual": "not-detected",
+      "passed": true,
+      "requests": 3
+    },
+    {
+      "case": "changing baseline",
+      "type": "sqli-boolean",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "passed": true,
+      "requests": 2
+    },
+    {
+      "case": "blocked probes are not SQLi proof",
+      "type": "sqli-boolean",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "passed": true,
+      "requests": 6
+    },
+    {
+      "case": "JSON is not HTML",
+      "type": "html-injection",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "passed": true,
+      "requests": 1
+    },
+    {
+      "case": "truncated baseline",
+      "type": "cors",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "passed": true,
+      "requests": 1
+    },
+    {
+      "case": "no redirect following",
+      "type": "cors",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "passed": true,
+      "requests": 1
+    }
+  ]
+}

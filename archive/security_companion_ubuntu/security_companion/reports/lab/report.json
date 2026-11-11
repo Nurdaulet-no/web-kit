@@ -1,0 +1,30 @@
+{
+  "inspection": {
+    "url": "http://127.0.0.1:8765/",
+    "timestamp_utc": "2026-11-11T00:31:24.170683+00:00",
+    "status": 200,
+    "seconds": 0.002,
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.13.5",
+      "Date": "Wed, 11 Nov 2026 00:31:24 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Content-Length": "125",
+      "X-Content-Type-Options": "nosniff"
+    },
+    "bytes_sampled": 125,
+    "sample_title": "Local Classroom Lab",
+    "checks": {
+      "content_security_policy": false,
+      "x_content_type_options": true,
+      "referrer_policy": false,
+      "hsts_https_only": null,
+      "cookie_http_only": []
+    },
+    "warnings": [
+      "Header absence is not proof of an exploitable vulnerability."
+    ]
+  },
+  "findings": [],
+  "runs": [],
+  "note": "Scanner matches are hypotheses until independently verified. No CVSS is inferred."
+}

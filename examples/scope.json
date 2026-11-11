@@ -1,0 +1,9 @@
+{
+  "targets": ["https://example.com/"],
+  "allowed_origins": ["https://example.com"],
+  "exclude_paths": ["/logout", "/signout", "/delete", "/remove"],
+  "max_pages": 10,
+  "delay": 1.0,
+  "timeout": 10,
+  "max_bytes": 262144
+}

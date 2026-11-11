@@ -1,0 +1,38 @@
+{
+  "generated": "2026-11-11T00:16:42.044328+00:00",
+  "inspection": {
+    "url": "http://127.0.0.1:8765/",
+    "timestamp": "2026-11-11T00:16:42.043652+00:00",
+    "status": 200,
+    "elapsed_seconds": 0.002,
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.13.5",
+      "Date": "Wed, 11 Nov 2026 00:16:42 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Content-Length": "117"
+    },
+    "body_sha256_prefix": "b6c76b4bc8c395aa",
+    "body_sample_bytes": 117,
+    "error": null
+  },
+  "checks": [
+    {
+      "name": "Content Security Policy",
+      "status": "review",
+      "note": "Наличие/отсутствие заголовка само по себе не подтверждает уязвимость"
+    },
+    {
+      "name": "X-Content-Type-Options",
+      "status": "review",
+      "note": "Наличие/отсутствие заголовка само по себе не подтверждает уязвимость"
+    },
+    {
+      "name": "Referrer Policy",
+      "status": "review",
+      "note": "Наличие/отсутствие заголовка само по себе не подтверждает уязвимость"
+    }
+  ],
+  "imported_reports": [],
+  "tool_logs": [],
+  "notice": "Предупреждения не эквивалентны подтвержденным CVSS. Проверять вручную и не эксплуатировать чужие данные."
+}

@@ -1,0 +1,50 @@
+{
+  "timestamp_utc": "2026-11-10T23:31:33.969728+00:00",
+  "target": "http://127.0.0.1:8765/",
+  "status": 200,
+  "redirect_location": "",
+  "content_type": "text/html; charset=utf-8",
+  "server_header": "BaseHTTP/0.6 Python/3.13.5",
+  "title": "Practice Lab",
+  "form_count": 1,
+  "forms": [
+    {
+      "method": "POST",
+      "action": "/login"
+    }
+  ],
+  "script_tag_count": 1,
+  "set_cookie_present": false,
+  "security_headers": {
+    "content-security-policy": "absent",
+    "strict-transport-security": "absent",
+    "x-content-type-options": "present",
+    "referrer-policy": "absent",
+    "permissions-policy": "absent"
+  },
+  "body_sha256": "0c91e8dac84fa18d9a9f76fa045a5156f39a6ff29c331f56fe82b18ef9228027",
+  "body_truncated": false,
+  "findings": [
+    {
+      "name": "Missing header: content-security-policy",
+      "severity": "informational",
+      "note": "Review applicability; missing headers alone do not establish a critical vulnerability."
+    },
+    {
+      "name": "Missing header: referrer-policy",
+      "severity": "informational",
+      "note": "Review applicability; missing headers alone do not establish a critical vulnerability."
+    },
+    {
+      "name": "Missing header: permissions-policy",
+      "severity": "informational",
+      "note": "Review applicability; missing headers alone do not establish a critical vulnerability."
+    },
+    {
+      "name": "HTTP transport",
+      "severity": "informational",
+      "note": "Use HTTPS for real deployments."
+    }
+  ],
+  "limitations": "Exactly one GET to the provided URL, redirects disabled; passive configuration observations, not exploitation or CVSS verification."
+}

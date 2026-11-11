@@ -1,0 +1,23 @@
+{
+  "checks": [
+    {
+      "type": "sqli-union",
+      "url": "https://example.com/item?id=1",
+      "parameter": "id"
+    },
+    {
+      "type": "sqli-boolean",
+      "url": "https://example.com/item?id=1",
+      "parameter": "id"
+    },
+    {
+      "type": "html-injection",
+      "url": "https://example.com/search?q=hello",
+      "parameter": "q"
+    },
+    {
+      "type": "cors",
+      "url": "https://example.com/api/profile"
+    }
+  ]
+}
