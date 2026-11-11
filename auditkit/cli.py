@@ -12,6 +12,7 @@ from .reports import add_evidence, empty_report, load_json, merge_reports, write
 from .scanner import scan
 from .pipeline import run_pipeline
 from .safe import ports, load_test, review_code
+from .security import check_dependencies, check_rce_potential, check_configuration
 from .tui import TerminalUI
 from .scope import Scope, canonical_url, origin
 
@@ -113,6 +114,25 @@ def main(argv=None):
     network[1].add_argument("--headers-file")
     code = commands.add_parser("code", help="Локальный эвристический анализ Python и конфигов")
     code.add_argument("--path", required=True)
+    security = commands.add_parser("security", help="Проверки безопасности: зависимости, RCE, конфигурация")
+    security.add_argument("--scope", required=True)
+    security.add_argument("--code-path", required=True)
+    security.add_argument("--authorized", action="store_true", required=True)
+    security.add_argument("--out")
+    security.add_argument("--fail-on", choices=["low", "medium", "high", "critical"])
+    attack = commands.add_parser("attack", help="Мощные DDoS-атаки с трекингом")
+    attack.add_argument("--scope", required=True)
+    attack.add_argument("--authorized", action="store_true", required=True)
+    attack.add_argument("--load", type=int, required=True, help="Уровень нагрузки для атаки")
+    attack.add_argument("--duration", type=int, default=300, help="Длительность атаки в секундах")
+    attack.add_argument("--out")
+    attack.add_argument("--fail-on", choices=["low", "medium", "high", "critical"])
+    rce = commands.add_parser("rce", help="Цепочки захвата системы и RCE")
+    rce.add_argument("--scope", required=True)
+    rce.add_argument("--authorized", action="store_true", required=True)
+    rce.add_argument("--code-path", required=True)
+    rce.add_argument("--out")
+    rce.add_argument("--fail-on", choices=["low", "medium", "high", "critical"])
     sequence = commands.add_parser("run", help="Последовательно scan → ports → load → общий отчёт")
     target = sequence.add_mutually_exclusive_group(required=True)
     target.add_argument("--url", help="URL сайта; scope создаётся автоматически для его точного origin")
@@ -170,8 +190,38 @@ def main(argv=None):
                     data = ports(scope, on_event=ui)
                 elif args.command == "load":
                     data = load_test(scope, args.requests, args.rps, headers, on_event=ui)
-                else:
+                elif args.command == "code":
                     data = review_code(args.path, on_event=ui)
+                elif args.command == "security":
+                    scope = Scope.from_dict(load_json(args.scope))
+                    data = {}
+                    # Run all security checks
+                    deps_data = check_dependencies(scope, on_event=ui)
+                    rce_data = check_rce_potential(scope, code_path=args.code_path, on_event=ui)
+                    config_data = check_configuration(scope, code_path=args.code_path, on_event=ui)
+                    # Merge results
+                    data["findings"] = deps_data["findings"] + rce_data["findings"] + config_data["findings"]
+                    data["errors"] = deps_data["errors"] + rce_data["errors"] + config_data["errors"]
+                    data["requests"] = deps_data["requests"] + rce_data["requests"] + config_data["requests"]
+                    data["mode"] = "security-check"
+                    data["summary"] = {
+                        "pages": 0,
+                        "findings": len(data["findings"]),
+                        "errors": len(data["errors"]),
+                        "requests": data["requests"]
+                    }
+                    data["timeline"] = deps_data["timeline"] + rce_data["timeline"] + config_data["timeline"]
+                    data["runs"] = [deps_data, rce_data, config_data]
+                    data["scope"] = scope
+                    data["completed_utc"] = datetime.now(timezone.utc).isoformat()
+                elif args.command == "attack":
+                    scope = Scope.from_dict(load_json(args.scope))
+                    from .attack import run_powerful_attack
+                    data = run_powerful_attack(scope, load_level=args.load, duration=args.duration, on_event=ui)
+                elif args.command == "rce":
+                    scope = Scope.from_dict(load_json(args.scope))
+                    from .attack import run_rce_chain_capture
+                    data = run_rce_chain_capture(scope, code_path=args.code_path, on_event=ui)
         elif args.command == "merge":
             data, output = merge_reports(args.report), args.out
         else:

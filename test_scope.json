@@ -1,0 +1,14 @@
+{
+  "targets": [
+    "https://example.com/"
+  ],
+  "allowed_origins": [
+    "https://example.com"
+  ],
+  "exclude_paths": [
+    "/logout",
+    "/signout",
+    "/delete",
+    "/remove"
+  ]
+}
