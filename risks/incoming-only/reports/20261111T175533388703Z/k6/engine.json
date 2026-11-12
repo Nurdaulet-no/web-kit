@@ -1,0 +1,7 @@
+{
+  "engine": "k6",
+  "started_utc": "2026-11-11T17:55:34.541067+00:00",
+  "status": "unavailable",
+  "reason": "Исполняемый файл не найден в PATH",
+  "findings": []
+}

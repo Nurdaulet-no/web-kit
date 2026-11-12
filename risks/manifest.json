@@ -1,0 +1,639 @@
+{
+  "source": "my-project-final",
+  "files": [
+    {
+      "source": "my-project-final/my-project/.gitignore",
+      "destination": ".gitignore",
+      "sha256": "26b5bbd559e21839893a51fd98b160c059babe019dccec4b40451a632637f746",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/README.md",
+      "destination": "risks/conflicting-versions/README.md",
+      "sha256": "5a86e15269c3f97cbf29cc9c591c293f857bd464f1405365772bddcd64499973",
+      "status": "archived-differing-version"
+    },
+    {
+      "source": "my-project-final/my-project/archive/README.md",
+      "destination": "archive/README.md",
+      "sha256": "299b3b083b54b82c1af3ea26c115d91f7218bc718235fcc67b0fbf27bbd82b29",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_companion_ubuntu/README.md",
+      "destination": "archive/audit_companion_ubuntu/README.md",
+      "sha256": "b9cae92b1a95c36f9922e9fd1bf21d92971f796f2bf9cab8c0fe1a1afdb1665c",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_companion_ubuntu/audit.py",
+      "destination": "archive/audit_companion_ubuntu/audit.py",
+      "sha256": "1776537f94b931ceb42e06c12ee71d3ae38669c69e507b54c9e5d6ccee20b3f1",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_companion_ubuntu/test_audit.py",
+      "destination": "archive/audit_companion_ubuntu/test_audit.py",
+      "sha256": "5bd5cbd8307521b76b895342a8edc71d732202515e7e556ef07a205fe87947db",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/README.md",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/README.md",
+      "sha256": "d56d1f5f546f61a79402eeb43930a016f9a227b04b70b319aab6d87625cab722",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/example_inspect/report.html",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/example_inspect/report.html",
+      "sha256": "5e988800c9cb75fc8537f0c810e9855696d67a472b8ec86e8f5dfd1edcf8259d",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/example_inspect/report.json",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/example_inspect/report.json",
+      "sha256": "0ebe50fc247597f0fa97011ead652c65ff96f942aecad414f07d8eabb49c5326",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/example_inspect/report.md",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/example_inspect/report.md",
+      "sha256": "70616845d24d3a7c308a550b384f5801b8145b5862e6d2228904a5bee47f1e50",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/example_report/report.html",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/example_report/report.html",
+      "sha256": "e1b36137a1966e8b8c0c44a9bfec6e805efd401ce03920dea2cd00717c0a57bd",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/example_report/report.json",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/example_report/report.json",
+      "sha256": "985be164a363bf6be4a4cfd9eb0f0057d2a60546af98bcabf109b7bd9baa8850",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/example_report/report.md",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/example_report/report.md",
+      "sha256": "d364e8471b940ece9a64fccb52d43f793c6d70e7ab028f164213cedd03f4fa66",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/lab_server.py",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/lab_server.py",
+      "sha256": "ec37a2c8d19facf1045eefab489fd1b27a19005c33643daff388390a2e12be7a",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/runner.py",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/runner.py",
+      "sha256": "f45d4b8d38edbc4cbf09207896a5cb08fdb0851713d15cd61501978fc412caf4",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/audit_orchestrator_ubuntu/audit_orchestrator/test_runner.py",
+      "destination": "archive/audit_orchestrator_ubuntu/audit_orchestrator/test_runner.py",
+      "sha256": "cfd60c9e7ed062c52957b2ca45a0736af76824af69759f3b80aaec7133b485fe",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_companion_ubuntu/security_companion/README.md",
+      "destination": "archive/security_companion_ubuntu/security_companion/README.md",
+      "sha256": "dd53a41c28d4901a1a1171b0b2cd9f3cbe327f52570b4f9b43162506deffa665",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_companion_ubuntu/security_companion/lab_server.py",
+      "destination": "archive/security_companion_ubuntu/security_companion/lab_server.py",
+      "sha256": "83f225b6f817f6d894562666defa42447a0d8fc68c9ef8c4bf813016241976e0",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_companion_ubuntu/security_companion/reports/lab/report.html",
+      "destination": "archive/security_companion_ubuntu/security_companion/reports/lab/report.html",
+      "sha256": "637fc1769fa713d1343f4c23bfdcaef61f133d708ba72ca51e208006a690de1b",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_companion_ubuntu/security_companion/reports/lab/report.json",
+      "destination": "archive/security_companion_ubuntu/security_companion/reports/lab/report.json",
+      "sha256": "8c568893f326e9b32febe57fd806795989ff4950b8827a088097a5fb25bfa731",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_companion_ubuntu/security_companion/runner.py",
+      "destination": "archive/security_companion_ubuntu/security_companion/runner.py",
+      "sha256": "62014512726134eb2175d37b7850a6600bb96bc8bb51f0ef4fdc503683e96294",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_companion_ubuntu/security_companion/tests/test_runner.py",
+      "destination": "archive/security_companion_ubuntu/security_companion/tests/test_runner.py",
+      "sha256": "d5c13a0be5a4c83eb7d049002c8ac569d80cc811151371cea14429b2e8bf7803",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu/README.md",
+      "destination": "archive/security_ready_ubuntu/README.md",
+      "sha256": "7ed66f17828da26a0528b55e753be2edaf05df5217de86f25787767eb477fa37",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu/lab_server.py",
+      "destination": "archive/security_ready_ubuntu/lab_server.py",
+      "sha256": "f2d9bfbe6ff8afe3fed8621b167bd1ac6213dfd832f044388e36cddd6de384d5",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu/runner.py",
+      "destination": "archive/security_ready_ubuntu/runner.py",
+      "sha256": "5a6a85c9b8b6548e26be3f4ce59d33c2c9bba15f34a03053663583cce6663557",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu/test_runner.py",
+      "destination": "archive/security_ready_ubuntu/test_runner.py",
+      "sha256": "d7e83853eaee505d7281f6acd0f0c89cb6c3e1c1c5810cf398b7ff8ba089e8d5",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu_plus/security_ready_ubuntu/README.md",
+      "destination": "archive/security_ready_ubuntu_plus/security_ready_ubuntu/README.md",
+      "sha256": "44ee9b0bfc051953cead6a59b53b9d006c9391daf733c8b08ae0722f755c535e",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu_plus/security_ready_ubuntu/evidence.py",
+      "destination": "archive/security_ready_ubuntu_plus/security_ready_ubuntu/evidence.py",
+      "sha256": "682a7cc1396ef0f3f8bf0f6bc0a235cf0fdcfa05c3cfca87f8c4f29891098d45",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu_plus/security_ready_ubuntu/lab_server.py",
+      "destination": "archive/security_ready_ubuntu_plus/security_ready_ubuntu/lab_server.py",
+      "sha256": "f2d9bfbe6ff8afe3fed8621b167bd1ac6213dfd832f044388e36cddd6de384d5",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu_plus/security_ready_ubuntu/runner.py",
+      "destination": "archive/security_ready_ubuntu_plus/security_ready_ubuntu/runner.py",
+      "sha256": "5a6a85c9b8b6548e26be3f4ce59d33c2c9bba15f34a03053663583cce6663557",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu_plus/security_ready_ubuntu/test_evidence.py",
+      "destination": "archive/security_ready_ubuntu_plus/security_ready_ubuntu/test_evidence.py",
+      "sha256": "57a8c87d904b535aa2560938b62e27dcb3d1bcd312be75c267e66797162cf4c8",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/security_ready_ubuntu_plus/security_ready_ubuntu/test_runner.py",
+      "destination": "archive/security_ready_ubuntu_plus/security_ready_ubuntu/test_runner.py",
+      "sha256": "d7e83853eaee505d7281f6acd0f0c89cb6c3e1c1c5810cf398b7ff8ba089e8d5",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/ubuntu_security_lab/README.md",
+      "destination": "archive/ubuntu_security_lab/README.md",
+      "sha256": "1b6e476e12063d47f21b71c813e89cca396bc47f2de87845909c74d234fc8966",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/ubuntu_security_lab/lab_check.sh",
+      "destination": "archive/ubuntu_security_lab/lab_check.sh",
+      "sha256": "1ffed1d014ccbfc17b8a96a50ceea019ef3fc81698ffa8fcfcc60c404fc22552",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/ubuntu_security_lab/lab_server.py",
+      "destination": "archive/ubuntu_security_lab/lab_server.py",
+      "sha256": "f3ad467589fa358ea110bdf3735d98cfda26c3922a99dc9dbdbbd43fbbf079e4",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/web_audit_starter/README.md",
+      "destination": "archive/web_audit_starter/README.md",
+      "sha256": "6e0b0efa25bba08914968b3a1058903270c1bf79961eb8738c5ba1fcfb3d4b83",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/web_audit_starter/audit.py",
+      "destination": "archive/web_audit_starter/audit.py",
+      "sha256": "0fcc356d92d05214be215df2f450f434a38f01d068b0f1170ae57a593028ae74",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/web_audit_starter/lab_server.py",
+      "destination": "archive/web_audit_starter/lab_server.py",
+      "sha256": "a927961f7ce9341906a2f4377e56f9ce32d31f5ee59b161f5e2b4774dbbfd874",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/web_audit_starter/results/lab/report.json",
+      "destination": "archive/web_audit_starter/results/lab/report.json",
+      "sha256": "76b1286152a1065c2d7fa3e0a846a4426514ea73b46ba5b83821cf62b4bd1d62",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/web_audit_starter/results/lab/report.md",
+      "destination": "archive/web_audit_starter/results/lab/report.md",
+      "sha256": "be717db43a1c547ce7ec376ab222237d540cf7c52f944a2f5f315d159b3530ad",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/archive/web_audit_starter/test_audit.py",
+      "destination": "archive/web_audit_starter/test_audit.py",
+      "sha256": "1fad52758ce164a60a21132beb41e8761cb17fcd2b5b9e53006cf474f1d7ce3f",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/audit.py",
+      "destination": "audit.py",
+      "sha256": "5717f5bf6aca23efd2f4e08cf203963665ae3498deb16445da9994919dbbd83e",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/__init__.py",
+      "destination": "auditkit/__init__.py",
+      "sha256": "0994117e91e370f1a105ef09e0ab58cf0540197c1cf35ed669675011a40ece6f",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/__main__.py",
+      "destination": "auditkit/__main__.py",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/active.py",
+      "destination": "auditkit/active.py",
+      "sha256": "1b332a057b83f74b4ba39d07171377cf8e709f127becef8bb7582401180d4fe2",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/attack.py",
+      "destination": "auditkit/attack.py",
+      "sha256": "5eefd352d32b19e557ca36918313fe4e84ff2a80a75b018ab23b7920ec2c6757",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/cli.py",
+      "destination": "risks/conflicting-versions/auditkit/cli.py",
+      "sha256": "a2b366cdb3dd9a539d30297ce87eabaee4a7482a3ab9f3c1a99de5207c41457e",
+      "status": "archived-differing-version"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/cli_temp.py",
+      "destination": "risks/incoming-only/auditkit/cli_temp.py",
+      "sha256": "f538f689a5403fbfe865bfec1476c1d7fb7983297595424e41ba3dc731fd5ecb",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/dashboard.py",
+      "destination": "auditkit/dashboard.py",
+      "sha256": "1cd725401fab87190e796ab289360a64d6e1afdbe1235a8e29d8fc6535885000",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/dependency_check.py",
+      "destination": "risks/conflicting-versions/auditkit/dependency_check.py",
+      "sha256": "9e2dd1b4d789821cafb3f1e181bf01d90a8b445a5f2286674da9626a3514c38f",
+      "status": "archived-differing-version"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/dependency_check_final.py",
+      "destination": "risks/incoming-only/auditkit/dependency_check_final.py",
+      "sha256": "c824b928cd3ca3f7a0d9a3ba33d4d21c21f2342d8f1140f04e266028708c4926",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/dependency_check_v2.py",
+      "destination": "risks/incoming-only/auditkit/dependency_check_v2.py",
+      "sha256": "c824b928cd3ca3f7a0d9a3ba33d4d21c21f2342d8f1140f04e266028708c4926",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/distributed_attack.py",
+      "destination": "auditkit/distributed_attack.py",
+      "sha256": "e04b6e534a50256bbe89f65afa96bccb207ce100569898638759fc2524d81a19",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/engines.py",
+      "destination": "risks/conflicting-versions/auditkit/engines.py",
+      "sha256": "89d2111fda9fbf9c620b7b2076fdb1491ca7a466e15e4267f884acbab3d03682",
+      "status": "archived-differing-version"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/events.py",
+      "destination": "auditkit/events.py",
+      "sha256": "dc49305be90d936a5988bb0177e53be20569ccd4e6531a8f232971048142bfbe",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/pipeline.py",
+      "destination": "auditkit/pipeline.py",
+      "sha256": "0630e2c9aa7b234b1a125a4e8dbdd42dea243851c078d158344cf85b20e198c0",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/production.py",
+      "destination": "auditkit/production.py",
+      "sha256": "6ada6acfe36a92abc534609ad94899511b4a2a8bc9056988ed8a47a7a85f78f7",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/professional_attack.py",
+      "destination": "risks/incoming-only/auditkit/professional_attack.py",
+      "sha256": "58094c4312f3325f014d9185b187ad864c02a89837e6323e92c54619621f4549",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/rce_chain.py",
+      "destination": "risks/incoming-only/auditkit/rce_chain.py",
+      "sha256": "ffecd43a8ca2ffdd6cb77a97ea50694314f5e0c650504a8a1631d7bf28c2dab9",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/rce_check.py",
+      "destination": "risks/conflicting-versions/auditkit/rce_check.py",
+      "sha256": "77455d24052fa3599321fa2c11688d2f0f35ee9e4382f2f2b33224ff97fc4c6d",
+      "status": "archived-differing-version"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/reports.py",
+      "destination": "auditkit/reports.py",
+      "sha256": "72c0be51993345340f5206426107098700ec58b9919a1c6cf4bb544911932b93",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/safe.py",
+      "destination": "risks/conflicting-versions/auditkit/safe.py",
+      "sha256": "f7ac396fdefbead5c86ccf1a2a38d6ace7b0fe92b633bbdf5241499aafea2930",
+      "status": "archived-differing-version"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/scanner.py",
+      "destination": "auditkit/scanner.py",
+      "sha256": "f2484b1f53c578e42c7a0d5b2bbd0a15c57353e5e722bbc64d99eb05b67b7b7a",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/scope.py",
+      "destination": "risks/conflicting-versions/auditkit/scope.py",
+      "sha256": "6a71e01cd1703dae88ba531c5c8c4e7b040fc5379b54fd7ff1ca030446c233cc",
+      "status": "archived-differing-version"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/security.py",
+      "destination": "risks/conflicting-versions/auditkit/security.py",
+      "sha256": "7a30d905d95a67621ec2fc4b4b4b983398dd7a55a80bddfc18e4c98645460fab",
+      "status": "archived-differing-version"
+    },
+    {
+      "source": "my-project-final/my-project/auditkit/tui.py",
+      "destination": "auditkit/tui.py",
+      "sha256": "7aea8dc0567cca5e0b174cb7480cccec389f9252195330a426d0f73e0e9702dd",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/examples/active-plan.json",
+      "destination": "examples/active-plan.json",
+      "sha256": "cd40bc01217d715720984400b08865fe324c643353109008e0ff2d427237925a",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/examples/scope.json",
+      "destination": "examples/scope.json",
+      "sha256": "3efe8e86b918cd886eda4e9a38781de88fbbb49bfd5a9a1eb635a55d73788e01",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/load/report.html",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/load/report.html",
+      "sha256": "b6d9f376c5ac4ea10ce5f6265c1dd7a2e9c41cf9b56d617f2657e82e22dc2fa8",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/load/report.json",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/load/report.json",
+      "sha256": "c5210d47cb979cb1dd6e89b7e0c406216f3a64d3d4c284c29ec7af30717122da",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/load/report.md",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/load/report.md",
+      "sha256": "e4a97e2b837013fc905c6561023ce64d3541b25494b0c4b89bc253be14005a3a",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/ports/report.html",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/ports/report.html",
+      "sha256": "8555944d58bd9928f723fc41e5113b0f64ad16fbff8b8ea8f4e47cdd7f80838d",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/ports/report.json",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/ports/report.json",
+      "sha256": "bef7ebc16d1d3607c0ed1fa66ea07a19ce95816be2ed6fefd3247464ab8933b2",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/ports/report.md",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/ports/report.md",
+      "sha256": "8552a978e596d91dc34005da5497f7a25c5bbb37a4f9d760385927f76107a662",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/report.html",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/report.html",
+      "sha256": "cd65d934602322dcbf198c09df5c50c5d1d4c5c473904e6864cd4f589fe7ecdd",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/report.json",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/report.json",
+      "sha256": "26804f9df57c942205d380ced546de6258df80bbbb6e14c7e1df42b673b89bcc",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/report.md",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/report.md",
+      "sha256": "27828b9cbaadf9162e89eed37787a10dc271372a31d26f4bef394086ded9e3d0",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/scan/report.html",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/scan/report.html",
+      "sha256": "11b511e65821101c4fa3430602bc7f0979885d0a64a18620fd9cc5cd6a5e29ba",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/scan/report.json",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/scan/report.json",
+      "sha256": "85fda86a37a7692ed6c2a8fffcba2bba3b78cbea8306dfc376d92ecac5a64e05",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175510253925Z/scan/report.md",
+      "destination": "risks/incoming-only/reports/20261111T175510253925Z/scan/report.md",
+      "sha256": "6862a31dbd52eaea3b0a5ca20d020df4c1767308b11c04c0618c4732a16b9d76",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/k6/engine.json",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/k6/engine.json",
+      "sha256": "29224649e1310381ef9d8e13f5a9ef4726a072928bed7a9454037b23a0d08cb5",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/nmap/engine.json",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/nmap/engine.json",
+      "sha256": "ae087ca27a9528932f4569a17b54b9e223fbb769a1ad0d7362ff7ceeaacbcda0",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/nuclei/engine.json",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/nuclei/engine.json",
+      "sha256": "8a9d7101667d29a76736d1bef59e83acc67018e54efd61bb8c364a3ea3b3ef2f",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/report.html",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/report.html",
+      "sha256": "d6fea9d157fd1c236952b9e0f6c1f982bb83425bab85b40fa130dc33e8118661",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/report.json",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/report.json",
+      "sha256": "7c1ee7df0ae834f1eb673784dc36458a698f28eba800aca1224c8447dad65fbb",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/report.md",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/report.md",
+      "sha256": "f9e2a8e038181a4728ed2a25842e03478f09426a03a0fc54350c68f80ec93de5",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/scan/report.html",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/scan/report.html",
+      "sha256": "3a7f3e3a5dcedff667b1900b64b2c240b309749f5bfd3400c3c2f1475abae11f",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/scan/report.json",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/scan/report.json",
+      "sha256": "d985407b43c0390df56598082e998e7de3126e5b82daa2ab1c04557f7f36625a",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/scan/report.md",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/scan/report.md",
+      "sha256": "321e2245dad97abfd87f5141a1124f8e327534f7349a7d4c85be968714e0a966",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/reports/20261111T175533388703Z/zap/engine.json",
+      "destination": "risks/incoming-only/reports/20261111T175533388703Z/zap/engine.json",
+      "sha256": "065e1c7aa142c0202e5d8e37d87f3b79d62c21f7c5cde06c10ee995062e5b662",
+      "status": "archived-incoming-only"
+    },
+    {
+      "source": "my-project-final/my-project/test_scope.json",
+      "destination": "test_scope.json",
+      "sha256": "0bff54ac9202e6dd87597488a8f724b2bff69672a61f93163af0f2df2be7d51a",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/tests/__init__.py",
+      "destination": "tests/__init__.py",
+      "sha256": "5d129f241b20c1827467bb7cb1b95b69c906a201c32d6332d9059d6d0d764b07",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/tests/active_fixture.py",
+      "destination": "tests/active_fixture.py",
+      "sha256": "cfca1bb2c8cd46a16ba0d8d90247f2a1da9f0d3e3e1d0b83963c40d27cf8994c",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/tests/benchmark_active.py",
+      "destination": "tests/benchmark_active.py",
+      "sha256": "c4c4d6404581b0b8b5fdf09c94f5a54f62a1c353bae974c78bc7419bfe9356fd",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/tests/test_active.py",
+      "destination": "tests/test_active.py",
+      "sha256": "7be680a4b850a99260ff4aaa51ffb66556c06acc037fb47fb774cd171985b2c0",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/tests/test_engines.py",
+      "destination": "tests/test_engines.py",
+      "sha256": "f11791fe76e67a361b1dd20623e2fc4f76d1b03ea21f6c3eedf3418f11326626",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/tests/test_pipeline.py",
+      "destination": "tests/test_pipeline.py",
+      "sha256": "86e3790d2363f74a506cfd4ba17786e324c6efd53dd27ed9b9a7426473ceffbd",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/tests/test_safe.py",
+      "destination": "tests/test_safe.py",
+      "sha256": "15d7f8015fb93d8ea20afde3267da38b4277debca5917dd316fdf5250b9d377c",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/tests/test_system.py",
+      "destination": "tests/test_system.py",
+      "sha256": "881b64f2b210fa65a905e124c3a126e7dcc721fb87c7e1f61420bae336feb47d",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/validation/active-benchmark/benchmark.json",
+      "destination": "validation/active-benchmark/benchmark.json",
+      "sha256": "cc699f68c72b329afec6a2f56fd9e18743790b5e3b0a7c4189d785098379c33d",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/validation/active-benchmark/report.html",
+      "destination": "validation/active-benchmark/report.html",
+      "sha256": "a0324e15b8e104dd3deb66bdb35f7693ef4f57a24a905e1fb5a4766caee516d1",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/validation/active-benchmark/report.json",
+      "destination": "validation/active-benchmark/report.json",
+      "sha256": "835867f0ff6c6b20f8a86fb10f14267dc89283aebf8f34329ca3899fa3d3caed",
+      "status": "identical-in-current-project"
+    },
+    {
+      "source": "my-project-final/my-project/validation/active-benchmark/report.md",
+      "destination": "validation/active-benchmark/report.md",
+      "sha256": "c9398fb4a38ef4cd2c317a823e27aae691ccf2eabd14bee795071a0a44b0a239",
+      "status": "identical-in-current-project"
+    }
+  ],
+  "source_deleted": true,
+  "validation": {
+    "application_tests": 60,
+    "result": "passed",
+    "compileall": "passed for auditkit and tests",
+    "diff_check": "passed",
+    "retained_files_sha256": "103/103 verified before deletion"
+  },
+  "additional_archived_files": [
+    {
+      "source": "tests/test_coding_agent.py",
+      "destination": "risks/orphaned-tests/test_coding_agent.py",
+      "sha256": "fbbf20cb5e3aaefb851e99b192bd6278ef46870de196854b74c3e2b07c3d0532",
+      "reason": "coding_agent.py was absent before cleanup"
+    }
+  ]
+}

@@ -1,0 +1,452 @@
+# Web Audit Kit
+
+Дата UTC: 2026-11-11T17:55:33.396301+00:00
+
+Страниц: 2; замечаний: 10; ошибок: 4
+
+## [info] Отсутствует content-security-policy
+
+URL: https://httpbin.org/
+
+Статус: observed
+
+Доказательства:
+
+    "Заголовок отсутствует в ответе HTML"
+
+Рекомендация: Настройте CSP с учётом ресурсов приложения.
+
+## [info] Отсутствует referrer-policy
+
+URL: https://httpbin.org/
+
+Статус: observed
+
+Доказательства:
+
+    "Заголовок отсутствует в ответе HTML"
+
+Рекомендация: Выберите Referrer-Policy для приложения.
+
+## [info] Отсутствует permissions-policy
+
+URL: https://httpbin.org/
+
+Статус: observed
+
+Доказательства:
+
+    "Заголовок отсутствует в ответе HTML"
+
+Рекомендация: Ограничьте ненужные возможности браузера через Permissions-Policy.
+
+## [info] Не обнаружена политика встраивания страницы
+
+URL: https://httpbin.org/
+
+Статус: observed
+
+Доказательства:
+
+    "Нет frame-ancestors и X-Frame-Options"
+
+Рекомендация: Ограничьте встраивание, если оно не требуется.
+
+## [info] Отсутствует HSTS
+
+URL: https://httpbin.org/
+
+Статус: observed
+
+Доказательства:
+
+    "Нет Strict-Transport-Security"
+
+Рекомендация: После проверки HTTPS настройте Strict-Transport-Security.
+
+## [info] Отсутствует content-security-policy
+
+URL: https://httpbin.org/forms/post
+
+Статус: observed
+
+Доказательства:
+
+    "Заголовок отсутствует в ответе HTML"
+
+Рекомендация: Настройте CSP с учётом ресурсов приложения.
+
+## [info] Отсутствует referrer-policy
+
+URL: https://httpbin.org/forms/post
+
+Статус: observed
+
+Доказательства:
+
+    "Заголовок отсутствует в ответе HTML"
+
+Рекомендация: Выберите Referrer-Policy для приложения.
+
+## [info] Отсутствует permissions-policy
+
+URL: https://httpbin.org/forms/post
+
+Статус: observed
+
+Доказательства:
+
+    "Заголовок отсутствует в ответе HTML"
+
+Рекомендация: Ограничьте ненужные возможности браузера через Permissions-Policy.
+
+## [info] Не обнаружена политика встраивания страницы
+
+URL: https://httpbin.org/forms/post
+
+Статус: observed
+
+Доказательства:
+
+    "Нет frame-ancestors и X-Frame-Options"
+
+Рекомендация: Ограничьте встраивание, если оно не требуется.
+
+## [info] Отсутствует HSTS
+
+URL: https://httpbin.org/forms/post
+
+Статус: observed
+
+Доказательства:
+
+    "Нет Strict-Transport-Security"
+
+Рекомендация: После проверки HTTPS настройте Strict-Transport-Security.
+
+## Область, страницы, ошибки и ограничения
+
+    {
+      "schema_version": 1,
+      "generated_utc": "2026-11-11T17:55:33.396301+00:00",
+      "pages": [
+        {
+          "url": "https://httpbin.org/",
+          "status": 200,
+          "elapsed_seconds": 0.091,
+          "title": "httpbin.org",
+          "headers": {
+            "content-type": "text/html; charset=utf-8",
+            "x-content-type-options": "nosniff"
+          },
+          "cookies": [],
+          "forms": [],
+          "tls": {
+            "version": "TLSv1.3",
+            "cipher": "TLS_AES_256_GCM_SHA384",
+            "expires": "Feb  3 19:21:39 2027 GMT",
+            "verified": true,
+            "days_remaining": 84
+          },
+          "body_bytes": 8632,
+          "body_truncated": false,
+          "body_sha256": "a62840d9a4902533eeb17816f28685d6d2ec3356916bb1fc899b4858c1ec8240"
+        },
+        {
+          "url": "https://httpbin.org/forms/post",
+          "status": 200,
+          "elapsed_seconds": 0.107,
+          "title": "",
+          "headers": {
+            "content-type": "text/html; charset=utf-8",
+            "x-content-type-options": "nosniff"
+          },
+          "cookies": [],
+          "forms": [
+            {
+              "method": "POST",
+              "action": "https://httpbin.org/post",
+              "password": "[REDACTED]"
+            }
+          ],
+          "tls": {
+            "version": "TLSv1.3",
+            "cipher": "TLS_AES_256_GCM_SHA384",
+            "expires": "Feb  3 19:21:39 2027 GMT",
+            "verified": true,
+            "days_remaining": 84
+          },
+          "body_bytes": 1397,
+          "body_truncated": false,
+          "body_sha256": "d9cd9adbe7554d4e82a597d722dccdcea70c8dd918836670e3f9687531f54d74"
+        }
+      ],
+      "errors": [
+        {
+          "type": "EngineIncomplete",
+          "engine": "nmap",
+          "status": "unavailable",
+          "message": "Исполняемый файл не найден в PATH"
+        },
+        {
+          "type": "EngineIncomplete",
+          "engine": "k6",
+          "status": "unavailable",
+          "message": "Исполняемый файл не найден в PATH"
+        },
+        {
+          "type": "EngineIncomplete",
+          "engine": "nuclei",
+          "status": "unavailable",
+          "message": "Исполняемый файл не найден в PATH"
+        },
+        {
+          "type": "EngineIncomplete",
+          "engine": "zap",
+          "status": "unavailable",
+          "message": "Исполняемый файл не найден в PATH"
+        }
+      ],
+      "imports": [],
+      "evidence": [],
+      "mode": "production-orchestrator",
+      "requests": 2,
+      "engines": [
+        {
+          "engine": "nmap",
+          "started_utc": "2026-11-11T17:55:34.540458+00:00",
+          "status": "unavailable",
+          "reason": "Исполняемый файл не найден в PATH",
+          "findings": []
+        },
+        {
+          "engine": "k6",
+          "started_utc": "2026-11-11T17:55:34.541067+00:00",
+          "status": "unavailable",
+          "reason": "Исполняемый файл не найден в PATH",
+          "findings": []
+        },
+        {
+          "engine": "nuclei",
+          "started_utc": "2026-11-11T17:55:34.541629+00:00",
+          "status": "unavailable",
+          "reason": "Исполняемый файл не найден в PATH",
+          "findings": []
+        },
+        {
+          "engine": "zap",
+          "started_utc": "2026-11-11T17:55:34.542225+00:00",
+          "status": "unavailable",
+          "reason": "Исполняемый файл не найден в PATH",
+          "findings": []
+        }
+      ],
+      "coverage": [
+        {
+          "engine": "http-tls-crawler",
+          "status": "completed",
+          "pages": 2,
+          "budget": 10
+        },
+        {
+          "engine": "nmap",
+          "status": "unavailable",
+          "reason": "Исполняемый файл не найден в PATH"
+        },
+        {
+          "engine": "k6",
+          "status": "unavailable",
+          "reason": "Исполняемый файл не найден в PATH"
+        },
+        {
+          "engine": "nuclei",
+          "status": "unavailable",
+          "reason": "Исполняемый файл не найден в PATH"
+        },
+        {
+          "engine": "zap",
+          "status": "unavailable",
+          "reason": "Исполняемый файл не найден в PATH"
+        }
+      ],
+      "runs": [
+        {
+          "completed_utc": "2026-11-11T17:55:34.537979+00:00",
+          "schema_version": 1,
+          "generated_utc": "2026-11-11T17:55:33.397103+00:00",
+          "mode": "crawl",
+          "scope": {
+            "targets": [
+              "https://httpbin.org/"
+            ],
+            "allowed_origins": [
+              "https://httpbin.org"
+            ],
+            "exclude_paths": [
+              "/logout",
+              "/signout",
+              "/delete",
+              "/remove"
+            ],
+            "max_pages": 10,
+            "delay": 1.0
+          },
+          "requests": 2,
+          "errors": [],
+          "limitations": [
+            "Проверка конфигурации и доступного HTML; бизнес-логика и эксплуатация не проверяются.",
+            "TLS: проверка доверия, hostname и срока сертификата текущего соединения; не перебор шифров.",
+            "Cookies не сохраняются между запросами. JavaScript не выполняется. Формы не отправляются.",
+            "Наличие замечаний не подтверждает эксплуатацию; отсутствие замечаний не доказывает безопасность."
+          ]
+        }
+      ],
+      "scope": {
+        "targets": [
+          "https://httpbin.org/"
+        ],
+        "allowed_origins": [
+          "https://httpbin.org"
+        ]
+      },
+      "coverage_gaps": [
+        "Авторизованные роли и бизнес-логика не проверены автоматически.",
+        "Нет браузерного исполнения JavaScript и импорта API-схемы.",
+        "Nuclei/ZAP анализируют полученные ответы пассивно; активные CVE-проверки не выполняются.",
+        "Предельная производительность не измеряется: k6 использует один VU и заданный бюджет.",
+        "Исходники и конфигурация не переданы; SAST, зависимости и контейнеры не проверены."
+      ],
+      "limitations": [
+        "Название профиля production задаёт ограничения запуска, а не сертификацию полноты аудита.",
+        "Количество HTTP-запросов учитывается сканером и k6; пакеты/соединения Nmap отдельно не подсчитываются.",
+        "Пассивные движки видят только ограниченные max_bytes части полученных ответов."
+      ],
+      "ports": [],
+      "load": {
+        "engine": "k6",
+        "concurrency": 1,
+        "planned_requests": 10,
+        "requests": 0,
+        "response_time_ms": {},
+        "failed_requests": {},
+        "max_rps": 1.0
+      },
+      "execution_status": "incomplete",
+      "completed_utc": "2026-11-11T17:55:34.542927+00:00",
+      "timeline": [
+        {
+          "timestamp": "2026-11-11T17:55:33.396889+00:00",
+          "message": "Обход HTML внутри scope и сбор ответов",
+          "completed": 0,
+          "total": 1
+        },
+        {
+          "timestamp": "2026-11-11T17:55:33.397055+00:00",
+          "message": "Начало HTTP/TLS-аудита",
+          "completed": 0,
+          "total": 10
+        },
+        {
+          "timestamp": "2026-11-11T17:55:33.397120+00:00",
+          "message": "GET",
+          "completed": 0,
+          "total": 10,
+          "url": "https://httpbin.org/"
+        },
+        {
+          "timestamp": "2026-11-11T17:55:33.527580+00:00",
+          "message": "HTTP 200; замечаний: 5",
+          "completed": 1,
+          "total": 10,
+          "url": "https://httpbin.org/",
+          "elapsed_seconds": 0.091
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.397310+00:00",
+          "message": "GET",
+          "completed": 1,
+          "total": 10,
+          "url": "https://httpbin.org/forms/post"
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.537838+00:00",
+          "message": "HTTP 200; замечаний: 5",
+          "completed": 2,
+          "total": 10,
+          "url": "https://httpbin.org/forms/post",
+          "elapsed_seconds": 0.107
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.537950+00:00",
+          "message": "Аудит завершён",
+          "completed": 2,
+          "total": 2,
+          "finished": true
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.540646+00:00",
+          "message": "nmap: unavailable",
+          "completed": 0,
+          "total": 1
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.540718+00:00",
+          "message": "Этап nmap: unavailable",
+          "completed": 0,
+          "total": 1,
+          "finished": true
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.541247+00:00",
+          "message": "k6: unavailable",
+          "completed": 0,
+          "total": 1
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.541311+00:00",
+          "message": "Этап k6: unavailable",
+          "completed": 0,
+          "total": 1,
+          "finished": true
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.541785+00:00",
+          "message": "nuclei: unavailable",
+          "completed": 0,
+          "total": 1
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.541834+00:00",
+          "message": "Этап nuclei: unavailable",
+          "completed": 0,
+          "total": 1,
+          "finished": true
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.542397+00:00",
+          "message": "zap: unavailable",
+          "completed": 0,
+          "total": 1
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.542453+00:00",
+          "message": "Этап zap: unavailable",
+          "completed": 0,
+          "total": 1,
+          "finished": true
+        },
+        {
+          "timestamp": "2026-11-11T17:55:34.542927+00:00",
+          "message": "Запуск: incomplete; проверьте покрытие",
+          "completed": 5,
+          "total": 5,
+          "finished": true
+        }
+      ],
+      "summary": {
+        "pages": 2,
+        "findings": 10,
+        "errors": 4,
+        "active_checks": 0
+      }
+    }

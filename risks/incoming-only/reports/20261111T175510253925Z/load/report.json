@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-11-11T17:55:10.425729+00:00",
+  "pages": [],
+  "findings": [],
+  "errors": [],
+  "imports": [],
+  "evidence": [],
+  "mode": "load-test",
+  "requests": 10,
+  "samples": [
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:10.425844+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.097,
+      "body_truncated": false
+    },
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:11.426149+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.1,
+      "body_truncated": false
+    },
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:12.426468+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.09,
+      "body_truncated": false
+    },
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:13.426756+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.101,
+      "body_truncated": false
+    },
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:14.427108+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.098,
+      "body_truncated": false
+    },
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:15.427438+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.098,
+      "body_truncated": false
+    },
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:16.427783+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.098,
+      "body_truncated": false
+    },
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:17.428122+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.088,
+      "body_truncated": false
+    },
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:18.428459+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.091,
+      "body_truncated": false
+    },
+    {
+      "url": "https://httpbin.org/",
+      "timestamp": "2026-11-11T17:55:19.428770+00:00",
+      "status": 200,
+      "elapsed_seconds": 0.088,
+      "body_truncated": false
+    }
+  ],
+  "scope": {
+    "targets": [
+      "https://httpbin.org/"
+    ],
+    "allowed_origins": [
+      "https://httpbin.org"
+    ]
+  },
+  "load": {
+    "planned_requests": 10,
+    "max_rps": 1.0,
+    "concurrency": 1,
+    "duration_seconds": 9.123,
+    "achieved_rps": 1.096,
+    "http_errors": 0,
+    "transport_errors": 0,
+    "p50_seconds": 0.097,
+    "p95_seconds": 0.101
+  },
+  "limitations": [
+    "Ограниченная последовательная выборка GET; не определяет предельную пропускную способность.",
+    "Без редиректов, отправки форм и сохранения cookies; GET должен быть безопасным для выбранных маршрутов."
+  ],
+  "timeline": [
+    {
+      "timestamp": "2026-11-11T17:55:10.425766+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 0,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:10.553114+00:00",
+      "message": "GET: 200",
+      "completed": 1,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.097
+    },
+    {
+      "timestamp": "2026-11-11T17:55:11.425987+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 1,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:11.557403+00:00",
+      "message": "GET: 200",
+      "completed": 2,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.1
+    },
+    {
+      "timestamp": "2026-11-11T17:55:12.426306+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 2,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:12.547770+00:00",
+      "message": "GET: 200",
+      "completed": 3,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.09
+    },
+    {
+      "timestamp": "2026-11-11T17:55:13.426589+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 3,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:13.558666+00:00",
+      "message": "GET: 200",
+      "completed": 4,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.101
+    },
+    {
+      "timestamp": "2026-11-11T17:55:14.426942+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 4,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:14.556277+00:00",
+      "message": "GET: 200",
+      "completed": 5,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.098
+    },
+    {
+      "timestamp": "2026-11-11T17:55:15.427274+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 5,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:15.556708+00:00",
+      "message": "GET: 200",
+      "completed": 6,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.098
+    },
+    {
+      "timestamp": "2026-11-11T17:55:16.427598+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 6,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:16.556541+00:00",
+      "message": "GET: 200",
+      "completed": 7,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.098
+    },
+    {
+      "timestamp": "2026-11-11T17:55:17.427962+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 7,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:17.546634+00:00",
+      "message": "GET: 200",
+      "completed": 8,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.088
+    },
+    {
+      "timestamp": "2026-11-11T17:55:18.428301+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 8,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:18.549823+00:00",
+      "message": "GET: 200",
+      "completed": 9,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.091
+    },
+    {
+      "timestamp": "2026-11-11T17:55:19.428616+00:00",
+      "message": "Нагрузочный GET",
+      "completed": 9,
+      "total": 10,
+      "url": "https://httpbin.org/"
+    },
+    {
+      "timestamp": "2026-11-11T17:55:19.548417+00:00",
+      "message": "GET: 200",
+      "completed": 10,
+      "total": 10,
+      "url": "https://httpbin.org/",
+      "elapsed_seconds": 0.088
+    },
+    {
+      "timestamp": "2026-11-11T17:55:19.548587+00:00",
+      "message": "Завершено",
+      "completed": 0,
+      "total": 1,
+      "finished": true
+    }
+  ],
+  "completed_utc": "2026-11-11T17:55:19.548624+00:00",
+  "summary": {
+    "pages": 0,
+    "findings": 0,
+    "errors": 0,
+    "active_checks": 0
+  }
+}

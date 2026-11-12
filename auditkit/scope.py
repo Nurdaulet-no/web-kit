@@ -1,5 +1,5 @@
 """Validate explicit origins, limits and paths before any network access."""
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import math
 from urllib.parse import urlsplit, urlunsplit, unquote
 
@@ -42,12 +42,13 @@ class Scope:
     delay: float = 1
     timeout: float = 10
     max_bytes: int = 262144
+    allowed_ports: list = field(default_factory=list)
 
     @classmethod
     def from_dict(cls, data):
         if not isinstance(data, dict):
             raise ValueError("Scope должен быть JSON-объектом")
-        unknown = set(data) - {"targets", "allowed_origins", "exclude_paths", "max_pages", "delay", "timeout", "max_bytes"}
+        unknown = set(data) - {"targets", "allowed_origins", "allowed_ports", "exclude_paths", "max_pages", "delay", "timeout", "max_bytes"}
         if unknown:
             raise ValueError("Неизвестные поля scope: " + ", ".join(sorted(unknown)))
         targets, origins = data.get("targets"), data.get("allowed_origins")
@@ -71,7 +72,16 @@ class Scope:
             if name in ("max_pages", "max_bytes") and not isinstance(value, int):
                 raise ValueError(f"{name} должен быть целым")
             values[name] = value
-        result = cls([canonical_url(x) for x in targets], allowed, exclude, **values)
+        allowed_ports = data.get("allowed_ports", [])
+        if not isinstance(allowed_ports, list) or any(type(port) is not int or not 1 <= port <= 65535 for port in allowed_ports):
+            raise ValueError("allowed_ports: нужен список целых чисел от 1 до 65535")
+        for value in allowed:
+            parsed = urlsplit(value)
+            effective_port = parsed.port or (443 if parsed.scheme == "https" else 80)
+            if allowed_ports and effective_port not in allowed_ports:
+                raise ValueError("Порт allowed_origins отсутствует в allowed_ports: " + value)
+        result = cls([canonical_url(x) for x in targets], allowed, exclude,
+                     allowed_ports=sorted(set(allowed_ports)), **values)
         if len(set(result.targets)) > result.max_pages:
             raise ValueError("max_pages меньше количества targets")
         for target in result.targets:
@@ -82,4 +92,20 @@ class Scope:
     def permits(self, url):
         url = canonical_url(url)
         path = unquote(urlsplit(url).path).lower()
-        return origin(url) in self.allowed_origins and not any(x.lower() in path for x in self.exclude_paths)
+        parsed = urlsplit(url)
+        port = parsed.port or (443 if parsed.scheme == "https" else 80)
+        return (origin(url) in self.allowed_origins and
+                (not self.allowed_ports or port in self.allowed_ports) and
+                not any(x.lower() in path for x in self.exclude_paths))
+
+    def is_target(self, url):
+        return canonical_url(url) in self.targets
+
+    def is_external(self, url):
+        return origin(url) not in self.allowed_origins
+
+    def get_allowed_hosts(self):
+        return sorted({urlsplit(value).hostname for value in self.allowed_origins})
+
+    def get_allowed_ports(self):
+        return list(self.allowed_ports)

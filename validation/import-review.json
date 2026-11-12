@@ -1,0 +1,97 @@
+{
+  "source": "my-project-final/my-project",
+  "syntax_errors": [
+    {
+      "file": "auditkit/cli.py",
+      "line": 167,
+      "error": "expected 'except' or 'finally' block"
+    },
+    {
+      "file": "auditkit/cli_temp.py",
+      "line": 165,
+      "error": "unexpected indent"
+    },
+    {
+      "file": "auditkit/security.py",
+      "line": 178,
+      "error": "unexpected indent"
+    }
+  ],
+  "incoming_new_files": [
+    "auditkit/cli_temp.py",
+    "auditkit/dependency_check_final.py",
+    "auditkit/dependency_check_v2.py",
+    "auditkit/professional_attack.py",
+    "auditkit/rce_chain.py",
+    "reports/20261111T175510253925Z/load/report.html",
+    "reports/20261111T175510253925Z/load/report.json",
+    "reports/20261111T175510253925Z/load/report.md",
+    "reports/20261111T175510253925Z/ports/report.html",
+    "reports/20261111T175510253925Z/ports/report.json",
+    "reports/20261111T175510253925Z/ports/report.md",
+    "reports/20261111T175510253925Z/report.html",
+    "reports/20261111T175510253925Z/report.json",
+    "reports/20261111T175510253925Z/report.md",
+    "reports/20261111T175510253925Z/scan/report.html",
+    "reports/20261111T175510253925Z/scan/report.json",
+    "reports/20261111T175510253925Z/scan/report.md",
+    "reports/20261111T175533388703Z/k6/engine.json",
+    "reports/20261111T175533388703Z/nmap/engine.json",
+    "reports/20261111T175533388703Z/nuclei/engine.json",
+    "reports/20261111T175533388703Z/report.html",
+    "reports/20261111T175533388703Z/report.json",
+    "reports/20261111T175533388703Z/report.md",
+    "reports/20261111T175533388703Z/scan/report.html",
+    "reports/20261111T175533388703Z/scan/report.json",
+    "reports/20261111T175533388703Z/scan/report.md",
+    "reports/20261111T175533388703Z/zap/engine.json"
+  ],
+  "different_files": [
+    "README.md",
+    "auditkit/cli.py",
+    "auditkit/dependency_check.py",
+    "auditkit/engines.py",
+    "auditkit/rce_check.py",
+    "auditkit/safe.py",
+    "auditkit/scope.py",
+    "auditkit/security.py"
+  ],
+  "identical_files": 68,
+  "integration": {
+    "scope.py": "Merged with corrected default ports, integer validation and constructor compatibility",
+    "dependency_check.py": "Reimplemented as a single tested pip-audit/npm audit adapter",
+    "rce_check.py": "Integrated as a compatibility wrapper around bounded local Python AST review",
+    "security.py": "Replaced malformed/placeholder implementations with real local review and dependency reports",
+    "cli.py": "Integrated security routing into working root CLI; broken incoming CLI not copied",
+    "cli_temp.py": "Not integrated: malformed duplicate CLI",
+    "dependency_check_v2.py": "Not copied: consolidated into dependency_check.py",
+    "dependency_check_final.py": "Not copied: consolidated into dependency_check.py",
+    "professional_attack.py": "Not integrated: attack capabilities",
+    "rce_chain.py": "Not integrated: capture/simulation module"
+  },
+  "limitations": [
+    "Archived incoming versions retain their original syntax errors. Run the root application.",
+    "External dependency services were not contacted; adapters were tested with fixtures.",
+    "DDoS, protection bypass and system-capture functionality was not integrated or improved."
+  ],
+  "comparison_stage": "Historical comparison before source-folder cleanup; source contents preserved at manifest destinations.",
+  "validation": {
+    "unittest": {
+      "command": "python3 -m unittest discover -s tests -q",
+      "tests": 75,
+      "result": "passed"
+    },
+    "compileall": "passed for auditkit, coding_agent.py and tests",
+    "python_39_grammar": "31 working-source files passed; not a Python 3.9 runtime test",
+    "git_diff_check": "passed",
+    "external_dependency_services": "not contacted; adapter tests use mocked responses"
+  },
+  "source_location_now": "See risks/manifest.json for retained paths; my-project-final was removed after hash verification.",
+  "latest_cleanup_validation": {
+    "application_tests": 60,
+    "result": "passed",
+    "compileall": "passed for auditkit and tests",
+    "diff_check": "passed",
+    "retained_files_sha256": "103/103 verified before deletion"
+  }
+}

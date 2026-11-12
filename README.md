@@ -4,6 +4,64 @@ A command-line toolkit for configuration audits, scoped active checks, and orche
 
 Start with `audit.py` or `python3 -m auditkit`. Seven earlier implementations are preserved in `archive/`; the main application does not depend on them.
 
+## Integrated local security review
+
+Reviewed additions from `my-project-final/my-project` are integrated into the root
+application. Run commands from this repository root. Files unique to the imported
+copy are preserved in `risks/incoming-only/`; differing versions are preserved in
+`risks/conflicting-versions/`. `risks/manifest.json` records original paths, retained
+paths and SHA-256 hashes. Identical files remain in the main project; the redundant
+`my-project-final/` folder has been removed. Archived `cli.py`, `cli_temp.py`, and
+`security.py` have syntax errors and are not the runnable application. Alternative dependency implementations
+(`dependency_check_v2.py` and `dependency_check_final.py`) were consolidated into
+`auditkit/dependency_check.py`. Attack/system-capture modules were not integrated;
+the legacy `attack` and `rce` CLI commands return an explicit unsupported-command
+error. Existing source files remain available for inspection.
+
+```bash
+python3 audit.py security --scope examples/scope.json --code-path ./my-app --authorized --ui off --out reports/local-security
+```
+
+`security` combines the existing bounded local Python/configuration review with
+project-specific dependency checks. It does not send requests to scope targets.
+It runs installed `pip-audit` against each `requirements.txt`, and installed `npm audit`
+in each directory with a `package.json` and an existing `package-lock.json` or
+`npm-shrinkwrap.json`. These tools contact their configured advisory services;
+their network requests are not included in the report's `requests` counter.
+No packages are installed by the wrapper and no automatic fixes are requested;
+pip-audit may resolve requirements and invoke its own package tooling, so use trusted
+project manifests. Tools are limited to 60 seconds per manifest and 2 MiB of process
+output. At most 100 manifests are processed; symlinks and dependency/archive/import
+directories are skipped. Missing tools, unsupported manifests, invalid output, and
+timeouts are reported as coverage errors (exit code 2), not clean results.
+
+Dependency findings remain `unverified-tool-alert`. `pip-audit` does not supply
+severity in its JSON result, so its findings use `info` with an explicit unknown
+severity annotation; `--fail-on` cannot use them as high-severity findings. npm
+`moderate` maps to `medium`. Local execution-risk matches are heuristics, not proof
+of RCE or system compromise. No manifests means dependency checking was not
+applicable, as recorded in `limitations`.
+
+Scope JSON now accepts optional `allowed_ports`, for example `[443, 8443]`. It is an
+additional restriction and never grants access to extra origins. Every configured
+origin must use a permitted port; omitted HTTPS/HTTP ports mean 443/80. Omitting
+`allowed_ports` or using `[]` preserves previous behavior.
+
+Validation commands:
+
+```bash
+python3 -m compileall -q auditkit tests
+python3 -m unittest discover -s tests -v
+```
+
+Tests use local HTTP fixtures; dependency-tool results are mocked. They do not
+establish that external audit engines or advisory services are installed/available.
+`risks/` is an inactive archive, excluded from local review and dependency traversal.
+Tests for the removed standalone `coding_agent.py` are preserved separately in
+`risks/orphaned-tests/` and are not part of the application's test suite.
+Protocol references: [pip-audit](https://github.com/pypa/pip-audit) and
+[npm audit](https://docs.npmjs.com/cli/v11/commands/npm-audit/).
+
 ## Start with one command
 
 ```bash

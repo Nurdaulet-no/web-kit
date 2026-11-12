@@ -1,0 +1,511 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Web Audit Kit — отчёт</title><style>
+:root{color-scheme:light;--ink:#172338;--muted:#52647a;--line:#dce4ef}*{box-sizing:border-box}body{font:15px/1.6 system-ui,sans-serif;background:#edf2f8;color:var(--ink);margin:0}main{max-width:1200px;margin:auto;padding:36px 24px}header{background:#14243b;color:#fff;padding:32px;border-radius:20px}h1{font-size:34px;margin:0}h2{font-size:20px;margin-top:0}.eyebrow{letter-spacing:.15em;font-size:12px;color:#94b9ed}.meta{color:#c7d7ed}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0}.metric,section,article,details{background:white;border:1px solid var(--line);border-radius:14px;padding:24px;margin:16px 0}.metric{margin:0;display:flex;flex-direction:column}.metric strong{font-size:32px}.metric span,time{color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.bar-row{display:grid;grid-template-columns:65px 1fr 25px;align-items:center;gap:12px;margin:14px 0}.track{background:#eef2f7;border-radius:8px;overflow:hidden}.bar{height:16px;min-width:0}.critical{--severity:#a51545}.high{--severity:#d03939}.medium{--severity:#c17a08}.low{--severity:#16817f}.info{--severity:#5279af}.bar{background:var(--severity)}.finding{border-left:5px solid var(--severity)}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f2f5fa;padding:16px;font-size:12px}p,td,li{overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;table-layout:fixed}td,th{padding:10px;border:1px solid var(--line);text-align:left}.latency{display:grid;grid-template-columns:1fr 90px;gap:8px;margin:14px 0}.latency span{grid-column:1/-1;overflow-wrap:anywhere;font-size:12px}meter{width:100%}ol{padding-left:20px}li{padding:10px 0}li time,li strong,li span{display:block}li time{font-size:12px}summary{cursor:pointer;font-weight:600}.print-note{font-size:13px;color:var(--muted)}@media(max-width:720px){.metrics,.grid{grid-template-columns:1fr}main{padding:16px}header{padding:20px}}@media print{@page{margin:15mm}body{background:#fff;font-size:11px}main{padding:0;max-width:none}header{background:white;color:#172338;border:1px solid #ddd}.meta,.eyebrow{color:#52647a}.metrics{grid-template-columns:repeat(4,1fr)}.grid{display:block}article,.metric,li{break-inside:avoid}section,article,details{box-shadow:none}.print-note{display:none}.bar{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style></head><body><main><header><div class="eyebrow">WEB AUDIT KIT / SECURITY & PERFORMANCE</div><h1>Результаты аудита</h1><p class="meta">UTC: 2026-11-11T17:55:10.256167+00:00 · Режим: safe-pipeline</p></header><p class="print-note">Для PDF: Ctrl+P → «Сохранить как PDF». Отчёт работает без сети. 100% выполнения не означает отсутствие уязвимостей.</p><div class="metrics"><div class="metric"><strong>5</strong><span>Замечания</span></div><div class="metric"><strong>1</strong><span>Страницы</span></div><div class="metric"><strong>0</strong><span>Ошибки выполнения</span></div><div class="metric"><strong>12</strong><span>Запросы / соединения</span></div></div><div class="grid"><section><h2>Уровни критичности / Severity</h2><div class="bar-row"><span>critical</span><div class="track"><div class="bar critical" style="width:0.00%"></div></div><b>0</b></div><div class="bar-row"><span>high</span><div class="track"><div class="bar high" style="width:0.00%"></div></div><b>0</b></div><div class="bar-row"><span>medium</span><div class="track"><div class="bar medium" style="width:0.00%"></div></div><b>0</b></div><div class="bar-row"><span>low</span><div class="track"><div class="bar low" style="width:0.00%"></div></div><b>0</b></div><div class="bar-row"><span>info</span><div class="track"><div class="bar info" style="width:100.00%"></div></div><b>5</b></div></section><section><h2>Время ответа</h2><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.097">0.097</meter><b>0.097 s</b></div><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.1">0.1</meter><b>0.100 s</b></div><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.09">0.09</meter><b>0.090 s</b></div><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.101">0.101</meter><b>0.101 s</b></div><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.098">0.098</meter><b>0.098 s</b></div><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.098">0.098</meter><b>0.098 s</b></div><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.098">0.098</meter><b>0.098 s</b></div><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.088">0.088</meter><b>0.088 s</b></div><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.091">0.091</meter><b>0.091 s</b></div><div class="latency"><span>https://httpbin.org/</span><meter min="0" max="0.101" value="0.088">0.088</meter><b>0.088 s</b></div></section></div><section><h2>Производительность</h2><pre>{
+  &quot;planned_requests&quot;: 10,
+  &quot;max_rps&quot;: 1.0,
+  &quot;concurrency&quot;: 1,
+  &quot;duration_seconds&quot;: 9.123,
+  &quot;achieved_rps&quot;: 1.096,
+  &quot;http_errors&quot;: 0,
+  &quot;transport_errors&quot;: 0,
+  &quot;p50_seconds&quot;: 0.097,
+  &quot;p95_seconds&quot;: 0.101
+}</pre></section><section><h2>TCP-порты</h2><pre>[
+  {
+    &quot;host&quot;: &quot;httpbin.org&quot;,
+    &quot;port&quot;: 443,
+    &quot;state&quot;: &quot;open&quot;
+  }
+]</pre></section><h2>Замечания и рекомендации</h2><article class="finding info"><h2>[info] Отсутствует content-security-policy</h2><p>https://httpbin.org/</p><p>Статус: observed</p><pre>&quot;Заголовок отсутствует в ответе HTML&quot;</pre><p>Настройте CSP с учётом ресурсов приложения.</p></article><article class="finding info"><h2>[info] Отсутствует referrer-policy</h2><p>https://httpbin.org/</p><p>Статус: observed</p><pre>&quot;Заголовок отсутствует в ответе HTML&quot;</pre><p>Выберите Referrer-Policy для приложения.</p></article><article class="finding info"><h2>[info] Отсутствует permissions-policy</h2><p>https://httpbin.org/</p><p>Статус: observed</p><pre>&quot;Заголовок отсутствует в ответе HTML&quot;</pre><p>Ограничьте ненужные возможности браузера через Permissions-Policy.</p></article><article class="finding info"><h2>[info] Не обнаружена политика встраивания страницы</h2><p>https://httpbin.org/</p><p>Статус: observed</p><pre>&quot;Нет frame-ancestors и X-Frame-Options&quot;</pre><p>Ограничьте встраивание, если оно не требуется.</p></article><article class="finding info"><h2>[info] Отсутствует HSTS</h2><p>https://httpbin.org/</p><p>Статус: observed</p><pre>&quot;Нет Strict-Transport-Security&quot;</pre><p>После проверки HTTPS настройте Strict-Transport-Security.</p></article><section><h2>Таймлайн</h2><ol><li><time>2026-11-11T17:55:10.256199+00:00</time><strong>[scan] Начало HTTP/TLS-аудита</strong><span></span></li><li><time>2026-11-11T17:55:10.256411+00:00</time><strong>[scan] GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:10.392159+00:00</time><strong>[scan] HTTP 200; замечаний: 5</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:10.392282+00:00</time><strong>[scan] Аудит завершён</strong><span></span></li><li><time>2026-11-11T17:55:10.394075+00:00</time><strong>[ports] TCP httpbin.org:443</strong><span></span></li><li><time>2026-11-11T17:55:10.424568+00:00</time><strong>[ports] TCP httpbin.org:443: open</strong><span></span></li><li><time>2026-11-11T17:55:10.424687+00:00</time><strong>[ports] Завершено</strong><span></span></li><li><time>2026-11-11T17:55:10.425766+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:10.553114+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:11.425987+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:11.557403+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:12.426306+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:12.547770+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:13.426589+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:13.558666+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:14.426942+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:14.556277+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:15.427274+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:15.556708+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:16.427598+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:16.556541+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:17.427962+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:17.546634+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:18.428301+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:18.549823+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:19.428616+00:00</time><strong>[load] Нагрузочный GET</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:19.548417+00:00</time><strong>[load] GET: 200</strong><span>https://httpbin.org/</span></li><li><time>2026-11-11T17:55:19.548587+00:00</time><strong>[load] Завершено</strong><span></span></li><li><time>2026-11-11T17:55:19.550330+00:00</time><strong>Все этапы завершены</strong><span></span></li></ol></section><details open><summary>Область, страницы, ошибки и ограничения</summary><pre>{
+  &quot;schema_version&quot;: 1,
+  &quot;generated_utc&quot;: &quot;2026-11-11T17:55:10.256167+00:00&quot;,
+  &quot;pages&quot;: [
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.097,
+      &quot;title&quot;: &quot;httpbin.org&quot;,
+      &quot;headers&quot;: {
+        &quot;content-type&quot;: &quot;text/html; charset=utf-8&quot;,
+        &quot;x-content-type-options&quot;: &quot;nosniff&quot;
+      },
+      &quot;cookies&quot;: [],
+      &quot;forms&quot;: [],
+      &quot;tls&quot;: {
+        &quot;version&quot;: &quot;TLSv1.3&quot;,
+        &quot;cipher&quot;: &quot;TLS_AES_256_GCM_SHA384&quot;,
+        &quot;expires&quot;: &quot;Feb  3 19:21:39 2027 GMT&quot;,
+        &quot;verified&quot;: true,
+        &quot;days_remaining&quot;: 84
+      },
+      &quot;body_bytes&quot;: 8632,
+      &quot;body_truncated&quot;: false,
+      &quot;body_sha256&quot;: &quot;a62840d9a4902533eeb17816f28685d6d2ec3356916bb1fc899b4858c1ec8240&quot;
+    }
+  ],
+  &quot;errors&quot;: [],
+  &quot;imports&quot;: [],
+  &quot;evidence&quot;: [],
+  &quot;mode&quot;: &quot;safe-pipeline&quot;,
+  &quot;requests&quot;: 12,
+  &quot;timeline&quot;: [
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.256199+00:00&quot;,
+      &quot;message&quot;: &quot;[scan] Начало HTTP/TLS-аудита&quot;,
+      &quot;completed&quot;: 0.0,
+      &quot;total&quot;: 3,
+      &quot;stage&quot;: &quot;scan&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.256411+00:00&quot;,
+      &quot;message&quot;: &quot;[scan] GET&quot;,
+      &quot;completed&quot;: 0.0,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;scan&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.392159+00:00&quot;,
+      &quot;message&quot;: &quot;[scan] HTTP 200; замечаний: 5&quot;,
+      &quot;completed&quot;: 0.99,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.097,
+      &quot;stage&quot;: &quot;scan&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.392282+00:00&quot;,
+      &quot;message&quot;: &quot;[scan] Аудит завершён&quot;,
+      &quot;completed&quot;: 1,
+      &quot;total&quot;: 3,
+      &quot;finished&quot;: false,
+      &quot;stage&quot;: &quot;scan&quot;
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.394075+00:00&quot;,
+      &quot;message&quot;: &quot;[ports] TCP httpbin.org:443&quot;,
+      &quot;completed&quot;: 1.0,
+      &quot;total&quot;: 3,
+      &quot;stage&quot;: &quot;ports&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.424568+00:00&quot;,
+      &quot;message&quot;: &quot;[ports] TCP httpbin.org:443: open&quot;,
+      &quot;completed&quot;: 1.99,
+      &quot;total&quot;: 3,
+      &quot;stage&quot;: &quot;ports&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.424687+00:00&quot;,
+      &quot;message&quot;: &quot;[ports] Завершено&quot;,
+      &quot;completed&quot;: 2,
+      &quot;total&quot;: 3,
+      &quot;finished&quot;: false,
+      &quot;stage&quot;: &quot;ports&quot;
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.425766+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.0,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.553114+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.1,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.097,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:11.425987+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.1,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:11.557403+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.2,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.1,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:12.426306+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.2,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:12.547770+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.3,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.09,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:13.426589+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.3,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:13.558666+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.4,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.101,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:14.426942+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.4,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:14.556277+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.5,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.098,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:15.427274+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.5,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:15.556708+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.6,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.098,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:16.427598+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.6,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:16.556541+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.7,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.098,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:17.427962+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.7,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:17.546634+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.8,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.088,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:18.428301+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.8,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:18.549823+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.9,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.091,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:19.428616+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Нагрузочный GET&quot;,
+      &quot;completed&quot;: 2.9,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:19.548417+00:00&quot;,
+      &quot;message&quot;: &quot;[load] GET: 200&quot;,
+      &quot;completed&quot;: 2.99,
+      &quot;total&quot;: 3,
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;elapsed_seconds&quot;: 0.088,
+      &quot;stage&quot;: &quot;load&quot;,
+      &quot;finished&quot;: false
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:19.548587+00:00&quot;,
+      &quot;message&quot;: &quot;[load] Завершено&quot;,
+      &quot;completed&quot;: 3,
+      &quot;total&quot;: 3,
+      &quot;finished&quot;: false,
+      &quot;stage&quot;: &quot;load&quot;
+    },
+    {
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:19.550330+00:00&quot;,
+      &quot;message&quot;: &quot;Все этапы завершены&quot;,
+      &quot;completed&quot;: 3,
+      &quot;total&quot;: 3,
+      &quot;finished&quot;: true
+    }
+  ],
+  &quot;runs&quot;: [
+    {
+      &quot;completed_utc&quot;: &quot;2026-11-11T17:55:10.392330+00:00&quot;,
+      &quot;schema_version&quot;: 1,
+      &quot;generated_utc&quot;: &quot;2026-11-11T17:55:10.256388+00:00&quot;,
+      &quot;mode&quot;: &quot;targets&quot;,
+      &quot;scope&quot;: {
+        &quot;targets&quot;: [
+          &quot;https://httpbin.org/&quot;
+        ],
+        &quot;allowed_origins&quot;: [
+          &quot;https://httpbin.org&quot;
+        ],
+        &quot;exclude_paths&quot;: [
+          &quot;/logout&quot;,
+          &quot;/signout&quot;,
+          &quot;/delete&quot;,
+          &quot;/remove&quot;
+        ],
+        &quot;max_pages&quot;: 10,
+        &quot;delay&quot;: 1.0
+      },
+      &quot;requests&quot;: 1,
+      &quot;errors&quot;: [],
+      &quot;limitations&quot;: [
+        &quot;Проверка конфигурации и доступного HTML; бизнес-логика и эксплуатация не проверяются.&quot;,
+        &quot;TLS: проверка доверия, hostname и срока сертификата текущего соединения; не перебор шифров.&quot;,
+        &quot;Cookies не сохраняются между запросами. JavaScript не выполняется. Формы не отправляются.&quot;,
+        &quot;Наличие замечаний не подтверждает эксплуатацию; отсутствие замечаний не доказывает безопасность.&quot;
+      ]
+    },
+    {
+      &quot;schema_version&quot;: 1,
+      &quot;generated_utc&quot;: &quot;2026-11-11T17:55:10.394046+00:00&quot;,
+      &quot;errors&quot;: [],
+      &quot;imports&quot;: [],
+      &quot;evidence&quot;: [],
+      &quot;mode&quot;: &quot;tcp-inventory&quot;,
+      &quot;requests&quot;: 1,
+      &quot;scope&quot;: {
+        &quot;allowed_origins&quot;: [
+          &quot;https://httpbin.org&quot;
+        ]
+      },
+      &quot;limitations&quot;: [
+        &quot;TCP connect без баннеров; открытый порт сам по себе не является уязвимостью.&quot;
+      ],
+      &quot;completed_utc&quot;: &quot;2026-11-11T17:55:10.424723+00:00&quot;
+    },
+    {
+      &quot;schema_version&quot;: 1,
+      &quot;generated_utc&quot;: &quot;2026-11-11T17:55:10.425729+00:00&quot;,
+      &quot;errors&quot;: [],
+      &quot;imports&quot;: [],
+      &quot;evidence&quot;: [],
+      &quot;mode&quot;: &quot;load-test&quot;,
+      &quot;requests&quot;: 10,
+      &quot;scope&quot;: {
+        &quot;targets&quot;: [
+          &quot;https://httpbin.org/&quot;
+        ],
+        &quot;allowed_origins&quot;: [
+          &quot;https://httpbin.org&quot;
+        ]
+      },
+      &quot;load&quot;: {
+        &quot;planned_requests&quot;: 10,
+        &quot;max_rps&quot;: 1.0,
+        &quot;concurrency&quot;: 1,
+        &quot;duration_seconds&quot;: 9.123,
+        &quot;achieved_rps&quot;: 1.096,
+        &quot;http_errors&quot;: 0,
+        &quot;transport_errors&quot;: 0,
+        &quot;p50_seconds&quot;: 0.097,
+        &quot;p95_seconds&quot;: 0.101
+      },
+      &quot;limitations&quot;: [
+        &quot;Ограниченная последовательная выборка GET; не определяет предельную пропускную способность.&quot;,
+        &quot;Без редиректов, отправки форм и сохранения cookies; GET должен быть безопасным для выбранных маршрутов.&quot;
+      ],
+      &quot;completed_utc&quot;: &quot;2026-11-11T17:55:19.548624+00:00&quot;
+    }
+  ],
+  &quot;scope&quot;: {
+    &quot;targets&quot;: [
+      &quot;https://httpbin.org/&quot;
+    ],
+    &quot;allowed_origins&quot;: [
+      &quot;https://httpbin.org&quot;
+    ]
+  },
+  &quot;limitations&quot;: [
+    &quot;Последовательные scan → ports → load; при ошибке этапа последующие этапы пропускаются.&quot;,
+    &quot;TCP-проверка ограничена портами allowed_origins; load ограничен scope и заданным бюджетом.&quot;
+  ],
+  &quot;samples&quot;: [
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:10.425844+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.097,
+      &quot;body_truncated&quot;: false
+    },
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:11.426149+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.1,
+      &quot;body_truncated&quot;: false
+    },
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:12.426468+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.09,
+      &quot;body_truncated&quot;: false
+    },
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:13.426756+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.101,
+      &quot;body_truncated&quot;: false
+    },
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:14.427108+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.098,
+      &quot;body_truncated&quot;: false
+    },
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:15.427438+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.098,
+      &quot;body_truncated&quot;: false
+    },
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:16.427783+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.098,
+      &quot;body_truncated&quot;: false
+    },
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:17.428122+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.088,
+      &quot;body_truncated&quot;: false
+    },
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:18.428459+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.091,
+      &quot;body_truncated&quot;: false
+    },
+    {
+      &quot;url&quot;: &quot;https://httpbin.org/&quot;,
+      &quot;timestamp&quot;: &quot;2026-11-11T17:55:19.428770+00:00&quot;,
+      &quot;status&quot;: 200,
+      &quot;elapsed_seconds&quot;: 0.088,
+      &quot;body_truncated&quot;: false
+    }
+  ],
+  &quot;ports&quot;: [
+    {
+      &quot;host&quot;: &quot;httpbin.org&quot;,
+      &quot;port&quot;: 443,
+      &quot;state&quot;: &quot;open&quot;
+    }
+  ],
+  &quot;load&quot;: {
+    &quot;planned_requests&quot;: 10,
+    &quot;max_rps&quot;: 1.0,
+    &quot;concurrency&quot;: 1,
+    &quot;duration_seconds&quot;: 9.123,
+    &quot;achieved_rps&quot;: 1.096,
+    &quot;http_errors&quot;: 0,
+    &quot;transport_errors&quot;: 0,
+    &quot;p50_seconds&quot;: 0.097,
+    &quot;p95_seconds&quot;: 0.101
+  },
+  &quot;completed_utc&quot;: &quot;2026-11-11T17:55:19.550330+00:00&quot;,
+  &quot;summary&quot;: {
+    &quot;pages&quot;: 1,
+    &quot;findings&quot;: 5,
+    &quot;errors&quot;: 0,
+    &quot;active_checks&quot;: 0
+  }
+}</pre></details></main></body></html>

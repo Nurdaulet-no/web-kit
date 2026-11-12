@@ -1,0 +1,61 @@
+# Web Audit Kit
+
+Дата UTC: 2026-11-11T17:55:10.394046+00:00
+
+Страниц: 0; замечаний: 0; ошибок: 0
+
+## Область, страницы, ошибки и ограничения
+
+    {
+      "schema_version": 1,
+      "generated_utc": "2026-11-11T17:55:10.394046+00:00",
+      "pages": [],
+      "errors": [],
+      "imports": [],
+      "evidence": [],
+      "mode": "tcp-inventory",
+      "ports": [
+        {
+          "host": "httpbin.org",
+          "port": 443,
+          "state": "open"
+        }
+      ],
+      "requests": 1,
+      "scope": {
+        "allowed_origins": [
+          "https://httpbin.org"
+        ]
+      },
+      "limitations": [
+        "TCP connect без баннеров; открытый порт сам по себе не является уязвимостью."
+      ],
+      "timeline": [
+        {
+          "timestamp": "2026-11-11T17:55:10.394075+00:00",
+          "message": "TCP httpbin.org:443",
+          "completed": 0,
+          "total": 1
+        },
+        {
+          "timestamp": "2026-11-11T17:55:10.424568+00:00",
+          "message": "TCP httpbin.org:443: open",
+          "completed": 1,
+          "total": 1
+        },
+        {
+          "timestamp": "2026-11-11T17:55:10.424687+00:00",
+          "message": "Завершено",
+          "completed": 0,
+          "total": 1,
+          "finished": true
+        }
+      ],
+      "completed_utc": "2026-11-11T17:55:10.424723+00:00",
+      "summary": {
+        "pages": 0,
+        "findings": 0,
+        "errors": 0,
+        "active_checks": 0
+      }
+    }

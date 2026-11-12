@@ -26,14 +26,14 @@ def inventory():
             for name in ENGINES}
 
 
-def execute(command, timeout, on_tick=None, env_overrides=None):
+def execute(command, timeout, on_tick=None, env_overrides=None, cwd=None):
     """No shell; terminate the whole process group on timeout, interrupt or log flood."""
     started = time.monotonic()
     env = {k: os.environ[k] for k in ("PATH", "HOME", "LANG", "SYSTEMROOT") if k in os.environ}
     env.update(env_overrides or {})
     with tempfile.TemporaryFile() as log:
         process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT,
-                                   stdin=subprocess.DEVNULL, env=env, start_new_session=True)
+                                   stdin=subprocess.DEVNULL, env=env, start_new_session=True, cwd=cwd)
         state, tick = "completed", started
         try:
             while process.poll() is None:

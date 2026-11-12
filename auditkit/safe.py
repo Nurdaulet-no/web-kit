@@ -131,7 +131,7 @@ def review_code(root, on_event=None):
                                    "https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html"],
                 limitations=["Эвристики конфигурации и Python AST; не полный SAST и не подтверждение соответствия OWASP.",
                              "До 500 файлов, каждый до 1 MiB; symlinks и каталоги зависимостей пропускаются."])
-    ignored = {".git", ".venv", "venv", "node_modules", "__pycache__", "reports", "archive"}
+    ignored = {".git", ".venv", "venv", "node_modules", "__pycache__", "reports", "archive", "risks"}
     suffixes = {".py", ".json", ".yaml", ".yml", ".toml", ".ini", ".conf", ".env"}
     import os
     files = []

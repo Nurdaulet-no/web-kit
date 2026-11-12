@@ -12,7 +12,7 @@ from .reports import add_evidence, empty_report, load_json, merge_reports, write
 from .scanner import scan
 from .pipeline import run_pipeline
 from .safe import ports, load_test, review_code
-from .security import check_dependencies, check_rce_potential, check_configuration
+from .security import run_security_check
 from .tui import TerminalUI
 from .scope import Scope, canonical_url, origin
 
@@ -120,14 +120,15 @@ def main(argv=None):
     security.add_argument("--authorized", action="store_true", required=True)
     security.add_argument("--out")
     security.add_argument("--fail-on", choices=["low", "medium", "high", "critical"])
-    attack = commands.add_parser("attack", help="Мощные DDoS-атаки с трекингом")
+    security.add_argument("--ui", choices=["auto", "on", "off"], default="auto")
+    attack = commands.add_parser("attack", help="Экспериментальная команда — не подключена")
     attack.add_argument("--scope", required=True)
     attack.add_argument("--authorized", action="store_true", required=True)
     attack.add_argument("--load", type=int, required=True, help="Уровень нагрузки для атаки")
     attack.add_argument("--duration", type=int, default=300, help="Длительность атаки в секундах")
     attack.add_argument("--out")
     attack.add_argument("--fail-on", choices=["low", "medium", "high", "critical"])
-    rce = commands.add_parser("rce", help="Цепочки захвата системы и RCE")
+    rce = commands.add_parser("rce", help="Экспериментальная команда — не подключена; анализ кода: security")
     rce.add_argument("--scope", required=True)
     rce.add_argument("--authorized", action="store_true", required=True)
     rce.add_argument("--code-path", required=True)
@@ -169,7 +170,9 @@ def main(argv=None):
             from .active import CHECK_TYPES
             print(f"Plan корректен: проверок {len(checks)}, полный бюджет не более {sum(CHECK_TYPES[x['type']] for x in checks)} GET")
             return 0
-        if args.command in ("scan", "verify", "ports", "load", "code", "run"):
+        if args.command in ("attack", "rce"):
+            raise ValueError("Эта экспериментальная команда не подключена. Для локального анализа используйте code или security; для ограниченного нагрузочного теста — load.")
+        if args.command in ("scan", "verify", "ports", "load", "code", "run", "security"):
             from datetime import datetime, timezone
             output = args.out or "reports/" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
             if args.command == "run" and args.url:
@@ -193,35 +196,7 @@ def main(argv=None):
                 elif args.command == "code":
                     data = review_code(args.path, on_event=ui)
                 elif args.command == "security":
-                    scope = Scope.from_dict(load_json(args.scope))
-                    data = {}
-                    # Run all security checks
-                    deps_data = check_dependencies(scope, on_event=ui)
-                    rce_data = check_rce_potential(scope, code_path=args.code_path, on_event=ui)
-                    config_data = check_configuration(scope, code_path=args.code_path, on_event=ui)
-                    # Merge results
-                    data["findings"] = deps_data["findings"] + rce_data["findings"] + config_data["findings"]
-                    data["errors"] = deps_data["errors"] + rce_data["errors"] + config_data["errors"]
-                    data["requests"] = deps_data["requests"] + rce_data["requests"] + config_data["requests"]
-                    data["mode"] = "security-check"
-                    data["summary"] = {
-                        "pages": 0,
-                        "findings": len(data["findings"]),
-                        "errors": len(data["errors"]),
-                        "requests": data["requests"]
-                    }
-                    data["timeline"] = deps_data["timeline"] + rce_data["timeline"] + config_data["timeline"]
-                    data["runs"] = [deps_data, rce_data, config_data]
-                    data["scope"] = scope
-                    data["completed_utc"] = datetime.now(timezone.utc).isoformat()
-                elif args.command == "attack":
-                    scope = Scope.from_dict(load_json(args.scope))
-                    from .attack import run_powerful_attack
-                    data = run_powerful_attack(scope, load_level=args.load, duration=args.duration, on_event=ui)
-                elif args.command == "rce":
-                    scope = Scope.from_dict(load_json(args.scope))
-                    from .attack import run_rce_chain_capture
-                    data = run_rce_chain_capture(scope, code_path=args.code_path, on_event=ui)
+                    data = run_security_check(scope, args.code_path, on_event=ui)
         elif args.command == "merge":
             data, output = merge_reports(args.report), args.out
         else:
@@ -242,7 +217,7 @@ def main(argv=None):
             print("Непроверенные области:", "; ".join(data.get("coverage_gaps", [])))
         if data.get("errors"):
             return 2
-        if args.command in ("scan", "verify", "ports", "load", "code", "run") and args.fail_on:
+        if args.command in ("scan", "verify", "ports", "load", "code", "run", "security") and args.fail_on:
             rank = {"info": 0, "low": 1, "medium": 2, "high": 3, "critical": 4}
             if any(rank.get(x.get("severity"), 0) >= rank[args.fail_on] for x in data["findings"]):
                 return 1
