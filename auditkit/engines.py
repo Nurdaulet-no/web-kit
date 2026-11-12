@@ -4,6 +4,7 @@ import base64
 import ipaddress
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import signal
@@ -22,8 +23,35 @@ ENGINES = ("nmap", "k6", "nuclei", "zap")
 
 
 def inventory():
-    return {name: (shutil.which("zap.sh") or shutil.which("zaproxy") if name == "zap" else shutil.which(name))
-            for name in ENGINES}
+    tools = {name: (shutil.which("zap.sh") or shutil.which("zaproxy") if name == "zap" else shutil.which(name))
+             for name in ENGINES}
+    configured = os.environ.get("AUDIT_ZAP_BIN")
+    if configured:
+        tools["zap"] = shutil.which(configured)
+    elif tools["zap"] == "/snap/bin/zaproxy" and Path("/snap/zaproxy/current/zap.sh").is_file():
+        tools["zap"] = "/snap/zaproxy/current/zap.sh"
+    return tools
+
+
+def zap_environment(binary):
+    bundled = sorted((Path(binary).parent / "usr/lib/jvm").glob("*/bin/java"))
+    if bundled:
+        home = bundled[0].parent.parent
+        return {"JAVA_HOME": str(home), "PATH": str(home / "bin") + os.pathsep + os.environ.get("PATH", "")}
+    return {}
+
+
+def failure_reason(result):
+    status, code = result.get("status"), result.get("exit_code")
+    prefix = {"output-limit": "Процесс остановлен: журнал превысил 2 MiB",
+              "timeout": "Превышено время выполнения", "interrupted": "Остановлено пользователем"}.get(status,
+              f"Процесс завершился с кодом {code}; ожидаемый результат не получен")
+    log = re.sub(r"\x1b\[[0-?]*[ -/]*[@-~]", "", result.get("log", ""))
+    errors = [line.strip() for line in log.splitlines() if re.search(r"error|\[ERR\]|exception|fatal|could not", line, re.I)]
+    diagnostic = list(dict.fromkeys(errors))[:2]
+    if not diagnostic:
+        diagnostic = [line.strip() for line in log.splitlines() if line.strip()][-2:]
+    return prefix + (": " + " | ".join(diagnostic)[:700] if diagnostic else "; процесс не вывел диагностику")
 
 
 def execute(command, timeout, on_tick=None, env_overrides=None, cwd=None):
@@ -92,7 +120,10 @@ class Captures:
             self.limited = True
             return
         self.bytes += len(response["body"])
-        headers = response["headers"]
+        # http.client removes transfer framing before returning the body.
+        headers = [(k, v) for k, v in response["headers"]
+                   if k.lower() not in ("transfer-encoding", "content-length", "trailer")]
+        headers.append(("Content-Length", str(len(response["body"]))))
         raw = f"HTTP/1.1 {response['status']} Response\r\n".encode()
         raw += "".join(f"{k}: {v}\r\n" for k, v in headers).encode("utf-8") + b"\r\n" + response["body"]
         (self.raw / f"{len(self.entries):04d}.txt").write_bytes(raw)
@@ -216,10 +247,26 @@ def nuclei_scan(binary, captures, directory, tick):
     isolated = {"NUCLEI_CONFIG_DIR": str(directory / "config"), "XDG_CONFIG_HOME": str(directory / "config"),
                 "XDG_STATE_HOME": str(directory / "state"), "XDG_CACHE_HOME": str(directory / "cache"),
                 "XDG_DATA_HOME": str(directory / "data")}
+    for value in set(isolated.values()):
+        Path(value).mkdir(parents=True, exist_ok=True)
+    ignore_candidates = [templates / ".nuclei-ignore", Path.home() / ".config/nuclei/.nuclei-ignore"]
+    ignore = next((path for path in ignore_candidates if path.is_file()), None)
+    target_ignore = Path(isolated["NUCLEI_CONFIG_DIR"]) / ".nuclei-ignore"
+    if ignore is not None:
+        shutil.copyfile(ignore, target_ignore)
+    else:
+        target_ignore.write_text('tags: [dos, local, fuzz, bruteforce, txt-service]\nfiles: []\n', encoding="utf-8")
     result = execute(args, 300, tick, env_overrides=isolated)
+    result["log"] = "\n".join(line for line in result.get("log", "").splitlines() if not line.lstrip().startswith("{"))
     result["templates"] = str(templates)
     result["findings"] = import_report(output).get("findings", []) if output.exists() else []
+    source_urls = {str(captures.raw / f"{index:04d}.txt"): public_url(entry["request"]["url"])
+                   for index, entry in enumerate(captures.entries)}
+    for item in result["findings"]:
+        item["url"] = source_urls.get(item.get("url"), item.get("url", ""))
     if result["status"] == "completed" and (result["exit_code"] != 0 or not output.exists()):
+        result["status"] = "error"
+    if result["status"] == "completed" and re.search(r"Could not execute raw input|could not dump raw http response", result.get("log", ""), re.I):
         result["status"] = "error"
     result["mode"] = "passive-recorded-http"
     return result
@@ -227,13 +274,26 @@ def nuclei_scan(binary, captures, directory, tick):
 
 def zap_scan(binary, captures, directory, tick):
     report = directory / "zap.json"
-    plan = {"env": {"parameters": {"failOnError": True, "failOnWarning": True}}, "jobs": [
-        {"type": "import", "parameters": {"type": "har", "fileName": str(captures.har()), "sendRequests": False}},
+    captured_origins = sorted({origin(entry["request"]["url"]) for entry in captures.entries})
+    plan = {"env": {"contexts": [{"name": "recorded-responses", "urls": captured_origins,
+                                   "includePaths": [re.escape(value) + r"/.*" for value in captured_origins]}],
+                    "parameters": {"failOnError": True, "failOnWarning": True}}, "jobs": [
+        # HAR import defaults to recorded responses, including older exim versions.
+        {"type": "import", "parameters": {"type": "har", "fileName": str(captures.har())}},
         {"type": "passiveScan-wait", "parameters": {"maxDuration": 2}},
         {"type": "report", "parameters": {"template": "traditional-json", "reportDir": str(directory), "reportFile": "zap.json"}}]}
     path = directory / "zap-plan.yaml"
     path.write_text(json.dumps(plan), encoding="utf-8")
-    result = execute([binary, "-cmd", "-dir", str(directory / "zap-home"), "-autorun", str(path)], 300, tick)
+    home = directory / "zap-home"
+    result = execute([binary, "-cmd", "-host", "127.0.0.1", "-port", "0",
+                      "-config", "callhome.tel.enabled=false", "-config", "start.checkForUpdates=false",
+                      "-config", "start.checkAddonUpdates=false", "-config", "start.installAddonUpdates=false",
+                      "-config", "start.installScannerRules=false", "-dir", str(home), "-autorun", str(path)], 300, tick,
+                     env_overrides=zap_environment(binary))
+    if result.get("exit_code") != 0 and (home / "zap.log").is_file():
+        with (home / "zap.log").open("rb") as stream:
+            stream.seek(max(0, (home / "zap.log").stat().st_size - 8000))
+            result["log"] = result.get("log", "") + "\nZAP log:\n" + sanitize(stream.read(8000).decode("utf-8", "replace"))
     result["findings"] = import_report(report).get("findings", []) if report.exists() else []
     if result["status"] == "completed" and (result["exit_code"] != 0 or not report.exists()):
         result["status"] = "error"
@@ -259,7 +319,7 @@ def run_engine(name, scope, output, captures, events, count=10, rps=1, headers=N
             version_args = [binary, "version" if name == "k6" else "-version" if name in ("nuclei", "zap") else "--version"]
             if name == "zap":
                 version_args += ["-dir", str(directory / "version-home")]
-            version = execute(version_args, 15)
+            version = execute(version_args, 15, env_overrides=zap_environment(binary) if name == "zap" else None)
             record["version"] = version["log"][:500]
             if version["status"] == "interrupted":
                 result = {"status": "interrupted"}
@@ -276,7 +336,9 @@ def run_engine(name, scope, output, captures, events, count=10, rps=1, headers=N
         except KeyboardInterrupt:
             result = {"status": "interrupted", "reason": "Остановлено пользователем"}
         except (OSError, ValueError, ET.ParseError, TypeError, KeyError) as exc:
-            result = {"status": "error", "reason": type(exc).__name__}
+            result = {"status": "error", "reason": f"{type(exc).__name__}: {str(exc)[:500]}"}
+        if result.get("status") != "completed" and not result.get("reason"):
+            result["reason"] = failure_reason(result)
         record.update(result)
     # Only normalized findings leave the private work directory.
     record = sanitize(record)

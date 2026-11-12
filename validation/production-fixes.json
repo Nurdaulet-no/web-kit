@@ -1,0 +1,31 @@
+{
+  "source_report": "reports/20261112T020327127171Z/report.original.json",
+  "historical_observations": 1595,
+  "rendered_groups": 16,
+  "historical_execution_status": "incomplete",
+  "validation_target": "local recorded HTTP fixture; no external target scan",
+  "real_engine_checks": {
+    "nuclei": {
+      "status": "completed",
+      "exit_code": 0,
+      "findings": 1
+    },
+    "zap": {
+      "status": "completed",
+      "exit_code": 0,
+      "findings": 5
+    }
+  },
+  "removed_runtime_modules": [
+    "auditkit/attack.py",
+    "auditkit/distributed_attack.py"
+  ],
+  "archive": "risks/legacy-runtime/",
+  "tests": {
+    "count": 67,
+    "result": "passed",
+    "command": "python3 -m unittest discover -s tests -q"
+  },
+  "compileall": "passed",
+  "git_diff_check": "passed"
+}

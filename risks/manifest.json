@@ -273,9 +273,9 @@
     },
     {
       "source": "my-project-final/my-project/auditkit/attack.py",
-      "destination": "auditkit/attack.py",
+      "destination": "risks/legacy-runtime/attack.py",
       "sha256": "5eefd352d32b19e557ca36918313fe4e84ff2a80a75b018ab23b7920ec2c6757",
-      "status": "identical-in-current-project"
+      "status": "archived-legacy-runtime"
     },
     {
       "source": "my-project-final/my-project/auditkit/cli.py",
@@ -291,9 +291,9 @@
     },
     {
       "source": "my-project-final/my-project/auditkit/dashboard.py",
-      "destination": "auditkit/dashboard.py",
+      "destination": "risks/conflicting-versions/auditkit/dashboard.py",
       "sha256": "1cd725401fab87190e796ab289360a64d6e1afdbe1235a8e29d8fc6535885000",
-      "status": "identical-in-current-project"
+      "status": "archived-before-runtime-update"
     },
     {
       "source": "my-project-final/my-project/auditkit/dependency_check.py",
@@ -315,9 +315,9 @@
     },
     {
       "source": "my-project-final/my-project/auditkit/distributed_attack.py",
-      "destination": "auditkit/distributed_attack.py",
+      "destination": "risks/legacy-runtime/distributed_attack.py",
       "sha256": "e04b6e534a50256bbe89f65afa96bccb207ce100569898638759fc2524d81a19",
-      "status": "identical-in-current-project"
+      "status": "archived-legacy-runtime"
     },
     {
       "source": "my-project-final/my-project/auditkit/engines.py",
@@ -363,9 +363,9 @@
     },
     {
       "source": "my-project-final/my-project/auditkit/reports.py",
-      "destination": "auditkit/reports.py",
+      "destination": "risks/conflicting-versions/auditkit/reports.py",
       "sha256": "72c0be51993345340f5206426107098700ec58b9919a1c6cf4bb544911932b93",
-      "status": "identical-in-current-project"
+      "status": "archived-before-runtime-update"
     },
     {
       "source": "my-project-final/my-project/auditkit/safe.py",
@@ -573,9 +573,9 @@
     },
     {
       "source": "my-project-final/my-project/tests/test_engines.py",
-      "destination": "tests/test_engines.py",
+      "destination": "risks/conflicting-versions/tests/test_engines.py",
       "sha256": "f11791fe76e67a361b1dd20623e2fc4f76d1b03ea21f6c3eedf3418f11326626",
-      "status": "identical-in-current-project"
+      "status": "archived-before-runtime-update"
     },
     {
       "source": "my-project-final/my-project/tests/test_pipeline.py",
@@ -634,6 +634,18 @@
       "destination": "risks/orphaned-tests/test_coding_agent.py",
       "sha256": "fbbf20cb5e3aaefb851e99b192bd6278ef46870de196854b74c3e2b07c3d0532",
       "reason": "coding_agent.py was absent before cleanup"
+    },
+    {
+      "source": "auditkit/attack.py",
+      "destination": "risks/legacy-runtime/attack.py",
+      "sha256": "5eefd352d32b19e557ca36918313fe4e84ff2a80a75b018ab23b7920ec2c6757",
+      "reason": "Removed inactive simulation/attack modules from runnable package"
+    },
+    {
+      "source": "auditkit/distributed_attack.py",
+      "destination": "risks/legacy-runtime/distributed_attack.py",
+      "sha256": "e04b6e534a50256bbe89f65afa96bccb207ce100569898638759fc2524d81a19",
+      "reason": "Removed inactive simulation/attack modules from runnable package"
     }
   ]
 }

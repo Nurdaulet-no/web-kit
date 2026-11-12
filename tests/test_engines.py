@@ -59,7 +59,9 @@ class EngineTests(unittest.TestCase):
                     (root / "nuclei.jsonl").write_text("")
                 else:
                     plan = json.loads((root / "zap-plan.yaml").read_text())
-                    self.assertFalse(plan["jobs"][0]["parameters"]["sendRequests"])
+                    self.assertFalse(plan["jobs"][0]["parameters"].get("sendRequests", False))
+                    self.assertEqual([job["type"] for job in plan["jobs"]], ["import", "passiveScan-wait", "report"])
+                    self.assertEqual(plan["env"]["contexts"][0]["urls"], ["https://example.test"])
                     (root / "zap.json").write_text('{"site":[]}')
                 return {"status": "completed", "exit_code": 0}
             with patch("auditkit.engines.execute", side_effect=fake) as process, patch.dict("os.environ", {"AUDIT_NUCLEI_TEMPLATES": tmp}):

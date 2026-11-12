@@ -4,6 +4,7 @@ import html
 import json
 from pathlib import Path
 import re
+from urllib.parse import urlsplit
 
 from .scope import public_url
 
@@ -34,12 +35,47 @@ def sanitize(value):
     return value
 
 
+def execution_outcome(data):
+    if (data.get("errors") or data.get("skipped_stages") or
+            any(row.get("status") != "completed" for row in data.get("coverage", [])) or
+            data.get("execution_status") in ("incomplete", "error", "interrupted")):
+        return "incomplete"
+    return "completed" if data.get("mode") or data.get("coverage") else "recorded"
+
+
+def group_findings(findings):
+    groups = {}
+    ranks = {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4}
+    for item in findings:
+        url = str(item.get("url", ""))
+        try:
+            parsed = urlsplit(url)
+            site = f"{parsed.scheme}://{parsed.netloc}" if parsed.netloc else "Локальный анализ"
+        except ValueError:
+            site = "Импортированный результат"
+        key = tuple(str(item.get(name, "")) for name in ("rule", "title", "severity", "confidence", "recommendation")) + (site,)
+        if key not in groups:
+            groups[key] = {name: item.get(name, "") for name in ("rule", "title", "severity", "confidence", "recommendation")}
+            groups[key].update(site=site, occurrences=0, urls=[], evidence_samples=[])
+        group = groups[key]
+        group["occurrences"] += 1
+        if url and url not in group["urls"]:
+            group["urls"].append(url)
+        evidence = item.get("evidence")
+        if len(group["evidence_samples"]) < 3 and evidence not in group["evidence_samples"]:
+            group["evidence_samples"].append(evidence)
+    return sorted(groups.values(), key=lambda group: (ranks.get(group["severity"], 4), group["title"], group["site"]))
+
+
 def write_report(data, output):
     directory = Path(output)
     directory.mkdir(parents=True, exist_ok=True, mode=0o700)
     data = sanitize(data)
+    data["execution_status"] = execution_outcome(data)
+    data["finding_groups"] = group_findings(data.get("findings", []))
     data["summary"] = {"pages": len(data.get("pages", [])), "findings": len(data.get("findings", [])),
-                       "errors": len(data.get("errors", [])), "active_checks": len(data.get("active_results", []))}
+                       "errors": len(data.get("errors", [])), "active_checks": len(data.get("active_results", [])),
+                       "finding_groups": len(data["finding_groups"])}
     serialized = json.dumps(data, indent=2, ensure_ascii=False)
     (directory / "report.json").write_text(serialized + "\n", encoding="utf-8")
     lines = ["# Web Audit Kit", "", f"Дата UTC: {data.get('generated_utc', '')}", "",
@@ -52,21 +88,28 @@ def write_report(data, output):
             label = f"{check.get('type', '')}: {check.get('status', '')} — {check.get('url', '')} — {check.get('reason', '')}"
             lines.extend(["- " + label, ""])
             active_rows.append("<tr>" + "".join("<td>" + html.escape(str(check.get(k, ""))) + "</td>" for k in ("type", "status", "url", "reason")) + "</tr>")
-    for item in data.get("findings", []):
-        evidence = json.dumps(item.get("evidence"), ensure_ascii=False, indent=2)
+    from .dashboard import human_value
+    for item in data["finding_groups"]:
+        evidence = json.dumps(item["evidence_samples"], ensure_ascii=False, indent=2)
         lines.extend([f"## [{item.get('severity', 'info')}] {item.get('title', '')}", "",
-                      "URL: " + str(item.get("url", "")), "", "Статус: " + item.get("confidence", "unverified"), "",
+                      "Сервис: " + item["site"], "", f"Наблюдений: {item['occurrences']}; URL: {len(item['urls'])}", "", "Статус: " + item.get("confidence", "unverified"), "",
                       "Доказательства:", "", "    " + evidence.replace("\n", "\n    "), "",
                       "Рекомендация: " + str(item.get("recommendation", "")), ""])
-        cards.append("<article><h2>" + html.escape(f"[{item.get('severity', 'info')}] {item.get('title', '')}") +
-                     "</h2><p>" + html.escape(str(item.get("url", ""))) + "</p><p>Статус: " + html.escape(item.get("confidence", "unverified")) +
-                     "</p><pre>" + html.escape(evidence) + "</pre><p>" + html.escape(str(item.get("recommendation", ""))) + "</p></article>")
-    details = {k: v for k, v in data.items() if k != "findings"}
-    details_json = json.dumps(details, indent=2, ensure_ascii=False)
-    lines.extend(["## Область, страницы, ошибки и ограничения", "", "    " + details_json.replace("\n", "\n    "), ""])
+        level = item['severity'] if item['severity'] in ('critical', 'high', 'medium', 'low', 'info') else 'info'
+        cards.append(f'<article class="finding {level}"><h2>' + html.escape(f"[{level}] {item['title']}") +
+                     "</h2><p>" + html.escape(item["site"]) + f" · Наблюдений: {item['occurrences']} · URL: {len(item['urls'])}</p>" +
+                     "<p>Статус доказательства: " + html.escape(item.get("confidence", "unverified")) + "</p>" +
+                     "<p><strong>Что исправить:</strong> " + html.escape(str(item.get("recommendation", ""))) + "</p>" +
+                     "<details><summary>Доказательства и затронутые URL</summary>" + human_value(item["evidence_samples"]) +
+                     "<ul>" + "".join("<li>" + html.escape(url) + "</li>" for url in item["urls"]) + "</ul></details></article>")
+    lines.extend(["## Выполнение", "", data["execution_status"], "", "## Ошибки", ""])
+    lines.extend("- " + str(row.get("engine", row.get("type", ""))) + ": " + str(row.get("message", "")) for row in data.get("errors", []))
+    lines.extend(["", "## Ограничения и пробелы покрытия", ""])
+    lines.extend("- " + str(value) for value in data.get("coverage_gaps", []) + data.get("limitations", []))
+    lines.extend(["", "Полные наблюдения и технические данные: report.json", ""])
     (directory / "report.md").write_text("\n".join(lines), encoding="utf-8")
     from .dashboard import render_dashboard
-    page = render_dashboard(data, cards, active_rows, details_json)
+    page = render_dashboard(data, cards, active_rows, "")
     (directory / "report.html").write_text(page, encoding="utf-8")
     return data
 

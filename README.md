@@ -14,9 +14,10 @@ paths and SHA-256 hashes. Identical files remain in the main project; the redund
 `my-project-final/` folder has been removed. Archived `cli.py`, `cli_temp.py`, and
 `security.py` have syntax errors and are not the runnable application. Alternative dependency implementations
 (`dependency_check_v2.py` and `dependency_check_final.py`) were consolidated into
-`auditkit/dependency_check.py`. Attack/system-capture modules were not integrated;
-the legacy `attack` and `rce` CLI commands return an explicit unsupported-command
-error. Existing source files remain available for inspection.
+`auditkit/dependency_check.py`. Attack/system-capture modules were not integrated.
+The inactive `attack.py` and `distributed_attack.py` modules are archived under
+`risks/legacy-runtime/`; the unused `attack` and `rce` CLI commands were removed.
+The runnable package contains no simulated takeover results.
 
 ```bash
 python3 audit.py security --scope examples/scope.json --code-path ./my-app --authorized --ui off --out reports/local-security
@@ -80,7 +81,7 @@ Stages run in this order:
 2. **Nmap:** TCP connect checks on ports from `allowed_origins`; HTTPS certificate inspection with `ssl-cert`. One IP address is selected for each hostname and recorded in the report. Adjacent addresses and address ranges are not scanned.
 3. **k6:** bounded real GET requests using one virtual user and 10 iterations by default. Redirects are disabled, and cookies do not persist between iterations. TLS verification stays enabled; the minimum request interval follows the scope's `delay` setting.
 4. **Nuclei:** passive HTTP templates applied to temporarily stored responses. This adapter does not run active CVE probes, headless checks, fuzzing, or OAST interactions.
-5. **ZAP:** recorded HAR import with `sendRequests: false`, passive scanning, and JSON report import through the Automation Framework.
+5. **ZAP:** recorded HAR import (the default import behavior), passive scanning, and JSON report import through the Automation Framework. The plan contains no requestor, spider or active-scan jobs.
 6. With `--code-path`, local heuristic source/configuration review.
 
 k6 aborts on HTTP 429/503 or three consecutive network failures/HTTP 5xx responses. The `http_req_failed rate<0.05` threshold is evaluated at the end. Threshold failures, incomplete request counts, and interruptions are recorded as errors. k6 discards response bodies but reads them until completion or timeout: the built-in scanner's `max_bytes` setting does not limit k6 network reads. This profile does not measure maximum throughput or multi-user scenarios.
@@ -88,6 +89,23 @@ k6 aborts on HTTP 429/503 or three consecutive network failures/HTTP 5xx respons
 External network processes have timeouts. Combined stdout/stderr is limited to 2 MiB; exceeding that limit stops the process. Stopping a process terminates its process group. Private HAR files, response bodies, session settings, and the generated k6 script live in temporary directories and are removed after the run. Up to 20 MiB of response bodies is retained for passive engines; exceeding this limit marks execution as incomplete. Each engine's `engine.json` contains normalized results, metrics, a bounded sanitized log, and version information.
 
 The HTML report includes an **engine execution and coverage gaps** table. `completed` means that a stage finished, not that the application is secure. Missing engines are `unavailable`, failures are `error`, and unfinished or omitted work is `incomplete`/`skipped`. Such runs save their results and return exit code 2.
+
+The terminal always prints a final result: completed (0), completed with findings
+above `--fail-on` (1), or incomplete (2). Non-completed engine coverage cannot be
+reported as success, even if an engine omitted its error record. Failure summaries
+include the process exit code and a short diagnostic rather than only a status name.
+
+HTML groups repeated findings by rule, title, origin, severity, evidence status and
+recommendation. It shows the number of groups separately from the number of page
+observations. A missing header on 100 pages is one group with 100 observations.
+Recommendations are visible; evidence and affected URLs can be expanded. Full
+observations and engine logs remain in `report.json`; they are not embedded as a
+large JSON block in HTML. HTTP 200 indicates a response, not a successful security
+assessment. Historical reports retain their actual execution status when re-rendered.
+
+Recorded responses use a corrected Content-Length: Python's HTTP client has already
+removed chunk framing, so Transfer-Encoding and Trailer are not copied into the
+reconstructed responses. This also handles bodies truncated by the capture budget.
 
 An HTTP/TLS crawl failure blocks subsequent network stages; passive engines may still analyze responses already collected. Ctrl+C stops subsequent stages. Findings from external engines retain `unverified-tool-alert` status until manually confirmed.
 
@@ -109,6 +127,14 @@ Docker images are not launched automatically. Installed executables are detected
 Nuclei requires local templates installed in advance. The toolkit checks `~/.local/share/nuclei/nuclei-templates` and `~/nuclei-templates`. Set `AUDIT_NUCLEI_TEMPLATES` for another directory. Execution configuration is isolated; template updates and cloud upload are not enabled.
 
 ZAP requires the Automation Framework, Import/Export, Passive Scan, and Report Generation add-ons. Incompatible versions or missing add-ons cause a stage error.
+
+Set `AUDIT_ZAP_BIN` to select a specific installed ZAP executable. The standard
+`/snap/bin/zaproxy` installation uses its bundled `zap.sh` and Java directly for
+headless execution, avoiding the desktop launcher. Each run uses a private home,
+a loopback proxy on an OS-assigned port, and disables update checks and telemetry.
+The HAR plan defines contexts for recorded origins. It omits the optional
+`sendRequests` field for compatibility with older Import/Export versions, whose
+default is to import recorded responses without resending them.
 
 Adapter references:
 [Nmap ssl-cert](https://nmap.org/nsedoc/scripts/ssl-cert.html),

@@ -8,7 +8,7 @@ import sys
 
 from . import __version__
 from .active import validate_plan, verify
-from .reports import add_evidence, empty_report, load_json, merge_reports, write_report
+from .reports import add_evidence, empty_report, execution_outcome, load_json, merge_reports, write_report
 from .scanner import scan
 from .pipeline import run_pipeline
 from .safe import ports, load_test, review_code
@@ -121,19 +121,6 @@ def main(argv=None):
     security.add_argument("--out")
     security.add_argument("--fail-on", choices=["low", "medium", "high", "critical"])
     security.add_argument("--ui", choices=["auto", "on", "off"], default="auto")
-    attack = commands.add_parser("attack", help="Экспериментальная команда — не подключена")
-    attack.add_argument("--scope", required=True)
-    attack.add_argument("--authorized", action="store_true", required=True)
-    attack.add_argument("--load", type=int, required=True, help="Уровень нагрузки для атаки")
-    attack.add_argument("--duration", type=int, default=300, help="Длительность атаки в секундах")
-    attack.add_argument("--out")
-    attack.add_argument("--fail-on", choices=["low", "medium", "high", "critical"])
-    rce = commands.add_parser("rce", help="Экспериментальная команда — не подключена; анализ кода: security")
-    rce.add_argument("--scope", required=True)
-    rce.add_argument("--authorized", action="store_true", required=True)
-    rce.add_argument("--code-path", required=True)
-    rce.add_argument("--out")
-    rce.add_argument("--fail-on", choices=["low", "medium", "high", "critical"])
     sequence = commands.add_parser("run", help="Последовательно scan → ports → load → общий отчёт")
     target = sequence.add_mutually_exclusive_group(required=True)
     target.add_argument("--url", help="URL сайта; scope создаётся автоматически для его точного origin")
@@ -170,8 +157,6 @@ def main(argv=None):
             from .active import CHECK_TYPES
             print(f"Plan корректен: проверок {len(checks)}, полный бюджет не более {sum(CHECK_TYPES[x['type']] for x in checks)} GET")
             return 0
-        if args.command in ("attack", "rce"):
-            raise ValueError("Эта экспериментальная команда не подключена. Для локального анализа используйте code или security; для ограниченного нагрузочного теста — load.")
         if args.command in ("scan", "verify", "ports", "load", "code", "run", "security"):
             from datetime import datetime, timezone
             output = args.out or "reports/" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
@@ -207,7 +192,7 @@ def main(argv=None):
             output = args.out
         data = write_report(data, output)
         print(f"Отчёт: {Path(output) / 'report.html'} (также JSON и Markdown)")
-        print(f"Страниц: {data['summary']['pages']}; замечаний: {data['summary']['findings']}; ошибок: {data['summary']['errors']}")
+        print(f"Страниц: {data['summary']['pages']}; групп замечаний: {data['summary'].get('finding_groups', data['summary']['findings'])}; наблюдений: {data['summary']['findings']}; ошибок: {data['summary']['errors']}")
         if args.command == "verify":
             from collections import Counter
             print("Проверки:", dict(Counter(x["status"] for x in data["active_results"])), "GET:", data["requests"])
@@ -215,12 +200,22 @@ def main(argv=None):
             from collections import Counter
             print("Движки:", dict(Counter(x["status"] for x in data["coverage"])))
             print("Непроверенные области:", "; ".join(data.get("coverage_gaps", [])))
-        if data.get("errors"):
+        if execution_outcome(data) == "incomplete":
+            print("ИТОГ: ПРОВЕРКА НЕ ЗАВЕРШЕНА ПОЛНОСТЬЮ (код 2).")
+            for row in data.get("coverage", []):
+                if row.get("status") != "completed":
+                    print(f"  {row.get('engine', 'этап')}: {row.get('status')} — {row.get('reason', 'см. журнал движка в отчёте')}")
+            for row in data.get("errors", []):
+                if row.get("type") != "EngineIncomplete":
+                    print(f"  {row.get('type', 'Ошибка')}: {row.get('message', '')}")
             return 2
         if args.command in ("scan", "verify", "ports", "load", "code", "run", "security") and args.fail_on:
             rank = {"info": 0, "low": 1, "medium": 2, "high": 3, "critical": 4}
             if any(rank.get(x.get("severity"), 0) >= rank[args.fail_on] for x in data["findings"]):
+                print("ИТОГ: ПРОВЕРКА ЗАВЕРШЕНА; превышен заданный порог замечаний (код 1).")
                 return 1
+        print("ИТОГ: ВСЕ ЗАПЛАНИРОВАННЫЕ ЭТАПЫ ВЫПОЛНЕНЫ (код 0)." if execution_outcome(data) == "completed"
+              else "ИТОГ: ОТЧЁТ СОХРАНЁН (код 0).")
         return 0
     except (ValueError, OSError, TypeError, KeyError, AttributeError) as exc:
         print(f"Ошибка: {exc}", file=sys.stderr)
